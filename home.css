@@ -7,7 +7,7 @@
     text-align: center;
     color: white;
     padding-top: 4rem; /* For header offset */
-    background-image: url('images/main2.jpg');
+    background-image: url('images/main.jpg');
     background-size: cover;
     background-position: center;
 }
@@ -163,4 +163,5 @@
     background-color: #e5e7eb;
     transform: translateY(-2px);
 }
+
 
