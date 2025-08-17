@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Products - Sruthy's World</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="products.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+</head>
+<body class="antialiased">
+
+    <!-- Header & Navigation -->
+    <header id="header" class="header">
+        <div class="container header-content">
+            <a href="index.html" class="logo">Sruthy's World</a>
+            <nav class="main-nav">
+                <a href="index.html" class="nav-link" data-page="index">Home</a>
+                <a href="about.html" class="nav-link" data-page="about">About</a>
+                <a href="products.html" class="nav-link" data-page="products">Products</a>
+                <a href="index.html#contact" class="nav-link">Contact</a>
+            </nav>
+            <a href="products.html" class="btn btn-primary" style="display: none;" media="(min-width: 768px)">Shop Now</a>
+            <button id="mobile-menu-button" class="mobile-menu-button">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" /></svg>
+            </button>
+        </div>
+        <div id="mobile-menu" class="mobile-menu">
+             <a href="index.html" class="nav-link" data-page="index">Home</a>
+             <a href="about.html" class="nav-link" data-page="about">About</a>
+             <a href="products.html" class="nav-link" data-page="products">Products</a>
+             <a href="products.html" class="btn btn-primary" style="width: 100%; margin-top: 0.5rem;">Shop Now</a>
+        </div>
+    </header>
+
+    <main class="container page-header">
+        <div class="section-header">
+            <h1 class="section-title">Our Collection</h1>
+            <p class="section-subtitle">Explore our range of handcrafted herbal products, made with the purest ingredients for your mind, body, and spirit.</p>
+        </div>
+
+        <div class="grid-container grid-container-cols-3">
+            <!-- Product 1 -->
+            <div class="product-card"><img src="https://images.unsplash.com/photo-1600195129997-856847c2a7e4?q=80&w=1887&auto=format&fit=crop" alt="Herbal Tea" class="product-card-image" onerror="this.onerror=null;this.src='https://placehold.co/400x300/C4D4C7/4A4A4A?text=Herbal+Tea';"><div class="product-card-content"><h3 class="product-card-title">Calming Chamomile Tea</h3><p class="product-card-description">A soothing blend to help you unwind and relax after a long day. Perfect for a peaceful night's sleep.</p><button class="btn btn-primary" style="width: 100%;">Add to Cart</button></div></div>
+            <!-- Product 2 -->
+            <div class="product-card"><img src="https://images.unsplash.com/photo-1629078892103-30752f1b74a3?q=80&w=1887&auto=format&fit=crop" alt="Lavender Body Oil" class="product-card-image" onerror="this.onerror=null;this.src='https://placehold.co/400x300/D3CEDC/4A4A4A?text=Body+Oil';"><div class="product-card-content"><h3 class="product-card-title">Lavender Body Oil</h3><p class="product-card-description">Nourish your skin with this luxurious, fast-absorbing oil infused with calming lavender essential oil.</p><button class="btn btn-primary" style="width: 100%;">Add to Cart</button></div></div>
+            <!-- Product 3 -->
+            <div class="product-card"><img src="https://images.unsplash.com/photo-1605265492235-3d22e03ff710?q=80&w=1887&auto=format&fit=crop" alt="Healing Salve" class="product-card-image" onerror="this.onerror=null;this.src='https://placehold.co/400x300/E3DBCB/4A4A4A?text=Healing+Salve';"><div class="product-card-content"><h3 class="product-card-title">Herbal Healing Salve</h3><p class="product-card-description">An all-purpose salve made with calendula and comfrey to soothe minor cuts, burns, and dry skin.</p><button class="btn btn-primary" style="width: 100%;">Add to Cart</button></div></div>
+            <!-- Product 4 -->
+            <div class="product-card"><img src="https://images.unsplash.com/photo-1557925139-cf336575995d2?q=80&w=1887&auto=format&fit=crop" alt="Peppermint Lip Balm" class="product-card-image" onerror="this.onerror=null;this.src='https://placehold.co/400x300/E8E8E8/4A4A4A?text=Lip+Balm';"><div class="product-card-content"><h3 class="product-card-title">Peppermint Lip Balm</h3><p class="product-card-description">A refreshing and moisturizing lip balm made with shea butter, beeswax, and peppermint oil.</p><button class="btn btn-primary" style="width: 100%;">Add to Cart</button></div></div>
+            <!-- Product 5 -->
+            <div class="product-card"><img src="https://images.unsplash.com/photo-1607006472855-72a33f3a820e?q=80&w=1887&auto=format&fit=crop" alt="Rosemary Hair Oil" class="product-card-image" onerror="this.onerror=null;this.src='https://placehold.co/400x300/C4D4C7/4A4A4A?text=Hair+Oil';"><div class="product-card-content"><h3 class="product-card-title">Rosemary Hair Oil</h3><p class="product-card-description">Strengthen and revitalize your hair with our invigorating rosemary-infused hair treatment oil.</p><button class="btn btn-primary" style="width: 100%;">Add to Cart</button></div></div>
+            <!-- Product 6 -->
+            <div class="product-card"><img src="https://images.unsplash.com/photo-1599746138137-33d3b7a43a9a?q=80&w=1887&auto=format&fit=crop" alt="Eucalyptus Bath Salts" class="product-card-image" onerror="this.onerror=null;this.src='https://placehold.co/400x300/F0F0F0/4A4A4A?text=Bath+Salts';"><div class="product-card-content"><h3 class="product-card-title">Eucalyptus Bath Salts</h3><p class="product-card-description">Clear your mind and soothe your muscles with these detoxifying bath salts with eucalyptus and mint.</p><button class="btn btn-primary" style="width: 100%;">Add to Cart</button></div></div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-content">
+            <p>&copy; <span id="year"></span> Sruthy's World. All Rights Reserved.</p>
+        </div>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>
