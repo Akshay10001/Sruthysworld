@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sruthy's World - Natural Herbal Lifestyle</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="home.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+</head>
+<body class="antialiased">
+
+    <!-- Header & Navigation -->
+    <header id="header" class="header">
+        <div class="container header-content">
+            <a href="index.html" class="logo">Sruthy's World</a>
+            <nav class="main-nav">
+                <a href="index.html" class="nav-link" data-page="index">Home</a>
+                <a href="about.html" class="nav-link" data-page="about">About</a>
+                <a href="products.html" class="nav-link" data-page="products">Products</a>
+                <a href="index.html#contact" class="nav-link">Contact</a>
+            </nav>
+            <a href="products.html" class="btn btn-primary" style="display: none;" media="(min-width: 768px)">Shop Now</a>
+            <button id="mobile-menu-button" class="mobile-menu-button">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" /></svg>
+            </button>
+        </div>
+        <div id="mobile-menu" class="mobile-menu">
+             <a href="index.html" class="nav-link" data-page="index">Home</a>
+             <a href="about.html" class="nav-link" data-page="about">About</a>
+             <a href="products.html" class="nav-link" data-page="products">Products</a>
+             <a href="products.html" class="btn btn-primary" style="width: 100%; margin-top: 0.5rem;">Shop Now</a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title">Embrace a Natural Lifestyle.</h1>
+            <p class="hero-subtitle">Discover the power of nature with our handcrafted herbal products, made with love and care.</p>
+            <a href="products.html" class="btn btn-primary btn-large">Explore Our Collection</a>
+        </div>
+    </section>
+
+    <main class="container">
+        <!-- About Section -->
+        <section id="about" class="section about-section">
+            <div class="about-section-image-container">
+                <img src="images/main2.jpg" alt="Herbal ingredients in bowls" class="about-section-image" onerror="this.onerror=null;this.src='https://placehold.co/600x400/A9C4A1/4A4A4A?text=Natural+Ingredients';">
+            </div>
+            <div class="about-section-text">
+                <h2 class="section-title">Welcome to Sruthy's World</h2>
+                <p>At Sruthy's World, we believe that the path to wellness is paved with nature's finest ingredients. Our journey began with a simple passion for herbal remedies and a desire to share their benefits with the world.</p>
+                <a href="about.html" class="learn-more-link">Learn More About Our Story &rarr;</a>
+            </div>
+        </section>
+
+        <!-- Featured Products Section -->
+        <section id="products" class="section">
+            <div class="section-header">
+                <h2 class="section-title">Our Featured Products</h2>
+                <p class="section-subtitle">Handcrafted with the purest ingredients for your well-being.</p>
+            </div>
+            <div class="grid-container grid-container-cols-3">
+                <div class="product-card"><img src="https://images.unsplash.com/photo-1600195129997-856847c2a7e4?q=80&w=1887&auto=format&fit=crop" alt="Herbal Tea" class="product-card-image" onerror="this.onerror=null;this.src='https://placehold.co/400x300/C4D4C7/4A4A4A?text=Herbal+Tea';"><div class="product-card-content"><h3 class="product-card-title">Calming Chamomile Tea</h3><p class="product-card-description">A soothing blend to help you unwind and relax after a long day.</p></div></div>
+                <div class="product-card"><img src="https://images.unsplash.com/photo-1629078892103-30752f1b74a3?q=80&w=1887&auto=format&fit=crop" alt="Lavender Body Oil" class="product-card-image" onerror="this.onerror=null;this.src='https://placehold.co/400x300/D3CEDC/4A4A4A?text=Body+Oil';"><div class="product-card-content"><h3 class="product-card-title">Lavender Body Oil</h3><p class="product-card-description">Nourish your skin with this luxurious, fast-absorbing oil.</p></div></div>
+                <div class="product-card"><img src="https://images.unsplash.com/photo-1605265492235-3d22e03ff710?q=80&w=1887&auto=format&fit=crop" alt="Healing Salve" class="product-card-image" onerror="this.onerror=null;this.src='https://placehold.co/400x300/E3DBCB/4A4A4A?text=Healing+Salve';"><div class="product-card-content"><h3 class="product-card-title">Herbal Healing Salve</h3><p class="product-card-description">An all-purpose salve to soothe minor cuts, burns, and dry skin.</p></div></div>
+            </div>
+            <div style="text-align: center; margin-top: 3rem;">
+                <a href="products.html" class="btn btn-primary btn-large">View All Products</a>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section id="features" class="section">
+            <div class="section-header">
+                <h2 class="section-title">Our Promise of Purity</h2>
+            </div>
+            <div class="features-grid">
+                <div class="feature-item">
+                    <svg class="feature-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m5.231 13.481L15 17.25m-4.5-15H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9zm3.75 11.625a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z" /></svg>
+                    <p>Cruelty Free</p>
+                </div>
+                <div class="feature-item">
+                    <svg class="feature-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582m15.686 0A11.953 11.953 0 0112 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0121 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0112 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 013 12c0-1.605.42-3.113 1.157-4.418" /></svg>
+                    <p>Natural Products</p>
+                </div>
+                <div class="feature-item">
+                    <svg class="feature-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                    <p>Indian Standards</p>
+                </div>
+                <div class="feature-item">
+                    <svg class="feature-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 12c0-1.232-.046-2.453-.138-3.662a4.006 4.006 0 00-3.7-3.7 48.678 48.678 0 00-7.324 0 4.006 4.006 0 00-3.7 3.7c-.092 1.21-.138 2.43-.138 3.662v4.5a4.006 4.006 0 003.7 3.7 48.656 48.656 0 007.324 0 4.006 4.006 0 003.7-3.7v-4.5z" /></svg>
+                    <p>Vegan</p>
+                </div>
+                <div class="feature-item">
+                    <svg class="feature-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 21h16.5M4.5 3h15M5.25 3v18m13.5-18v18M9 6.75h6M9 11.25h6M9 15.75h6" /></svg>
+                    <p>Lab Tested</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- YouTube Section -->
+        <section id="youtube" class="section youtube-section">
+            <h2 class="section-title">Join Our Community</h2>
+            <p class="section-subtitle" style="margin-bottom: 2rem;">Discover natural remedies, wellness tips, and the stories behind our products on Sruthy's World YouTube channel.</p>
+            <a href="https://www.youtube.com/@Sruthysworld" class="btn btn-primary btn-large">Visit Our Channel</a>
+        </section>
+
+        <!-- Support Section -->
+        <section id="support" class="section">
+            <div class="section-header">
+                <h2 class="section-title">We're Here to Help</h2>
+            </div>
+            <div class="support-buttons">
+                <a href="#" class="btn btn-secondary btn-large">Send Your Suggestions</a>
+                <a href="#" class="btn btn-secondary btn-large">Complaint Registration</a>
+                <a href="#" class="btn btn-secondary btn-large">Product Removal</a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-content">
+            <p>&copy; <span id="year"></span> Sruthy's World. All Rights Reserved.</p>
+        </div>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>
