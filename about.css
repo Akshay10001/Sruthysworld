@@ -5,7 +5,7 @@
     align-items: center;
     gap: 2rem;
     text-align: center;
-    background-color: #FAF6F0; /* Light Cream */
+    background-color: #f6d5b8; /* Soft peach-beige */
 }
 
 @media (min-width: 1024px) {
@@ -104,11 +104,12 @@
 }
 
 .mission-vision-card {
-    background-color: #D7C6B5; /* Cashmere */
+    background-color: #f6d5b8; /* Soft peach-beige */
     padding: 2rem;
     border-radius: 0.5rem;
+    color: #854d27;
 }
 .mission-vision-card h3 {
-    color: #634832; /* Richer Taupe */
+    color: #854d27;
     margin-bottom: 0.5rem;
 }
