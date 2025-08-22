@@ -7,7 +7,7 @@
     text-align: center;
     color: white;
     padding-top: 4rem; /* For header offset */
-    background-image: url('images/main.jpg');
+    background-image: url('https://images.unsplash.com/photo-1598816563148-2b4a451525a8?q=80&w=2070&auto=format&fit=crop');
     background-size: cover;
     background-position: center;
 }
@@ -84,7 +84,7 @@
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
 }
 .learn-more-link {
-    color: #3B666B;
+    color: #1A4314; /* Bolder Color */
     font-weight: 600;
     text-decoration: none;
     display: inline-block;
@@ -121,18 +121,18 @@
     height: 3rem;
     width: 3rem;
     margin: 0 auto 1rem;
-    color: #84A98C;
+    color: #C05746; /* Bolder Color */
 }
 
 .feature-item p {
     font-weight: 500;
-    color: #3B666B;
+    color: #1A4314; /* Bolder Color */
 }
 
 /* --- YouTube Section --- */
 .youtube-section {
     text-align: center;
-    background-color: #EAF0EB;
+    background-color: #F5F5DC; /* Bolder Color */
     padding: 3rem 1.5rem;
     border-radius: 0.5rem;
 }
@@ -163,5 +163,3 @@
     background-color: #e5e7eb;
     transform: translateY(-2px);
 }
-
-
