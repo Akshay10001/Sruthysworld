@@ -1,8 +1,8 @@
 /* --- Global Styles & Fonts --- */
 body {
     font-family: 'Inter', sans-serif;
-    background-color: #FBF9F6;
-    color: #4A4A4A;
+    background-color: #F5EBE0; /* Almond Beige Base */
+    color: #967259; /* Muted Rose Taupe */
     line-height: 1.6;
 }
 
@@ -30,7 +30,7 @@ h1, h2, h3, .logo {
     left: 0;
     right: 0;
     z-index: 50;
-    background-color: rgba(255, 255, 255, 0.8);
+    background-color: rgba(245, 235, 224, 0.8); /* Translucent Almond Beige */
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
@@ -52,7 +52,7 @@ h1, h2, h3, .logo {
 .logo {
     font-size: 1.5rem;
     font-weight: 700;
-    color: #1A4314; /* Bolder Color */
+    color: #634832; /* Richer Taupe */
     text-decoration: none;
 }
 
@@ -71,7 +71,7 @@ h1, h2, h3, .logo {
 .nav-link {
     position: relative;
     text-decoration: none;
-    color: #4A4A4A;
+    color: #967259; /* Muted Rose Taupe */
     transition: color 0.3s ease;
 }
 
@@ -83,7 +83,7 @@ h1, h2, h3, .logo {
     bottom: -4px;
     left: 50%;
     transform: translateX(-50%);
-    background-color: #C05746; /* Bolder Color */
+    background-color: #E5A184; /* Soft Terracotta */
     transition: width 0.3s ease;
 }
 
@@ -95,7 +95,7 @@ h1, h2, h3, .logo {
     background: none;
     border: none;
     cursor: pointer;
-    color: #1A4314; /* Bolder Color */
+    color: #634832; /* Richer Taupe */
 }
 
 .mobile-menu-button svg {
@@ -133,13 +133,13 @@ h1, h2, h3, .logo {
 }
 
 .btn-primary {
-    background-color: #1A4314; /* Bolder Color */
+    background-color: #E5A184; /* Soft Terracotta */
     color: white;
     transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 .btn-primary:hover {
-    background-color: #112B0D; /* Bolder Color */
+    background-color: #D89076; /* Darker Soft Terracotta */
     transform: translateY(-2px);
 }
 
@@ -168,9 +168,15 @@ main {
 
 .section {
     margin-bottom: 6rem;
+    padding: 3rem 2rem;
+    border-radius: 0.5rem;
 }
 .section:last-child {
     margin-bottom: 0;
+}
+.section-plain {
+    padding: 0;
+    background-color: transparent !important;
 }
 
 .section-header {
@@ -181,7 +187,7 @@ main {
 .section-title {
     font-size: 1.875rem;
     font-weight: 700;
-    color: #1A4314; /* Bolder Color */
+    color: #634832; /* Richer Taupe */
     margin-bottom: 0.5rem;
 }
 
@@ -193,7 +199,7 @@ main {
 
 .section-subtitle {
     font-size: 1.125rem;
-    color: #4A4A4A;
+    color: #967259; /* Muted Rose Taupe */
     max-width: 42rem;
     margin: 0 auto;
 }
@@ -223,7 +229,7 @@ main {
     border-radius: 0.5rem;
     overflow: hidden;
     box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-    border: 1px solid #f0f0f0;
+    border: 1px solid #EADFCF; /* Muted Sandalwood Border */
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
@@ -245,22 +251,22 @@ main {
 .product-card-title {
     font-size: 1.25rem;
     font-weight: 600;
-    color: #1a202c;
+    color: #634832; /* Richer Taupe */
     margin-bottom: 0.5rem;
 }
 
 .product-card-description {
-    color: #4A4A4A;
+    color: #967259; /* Muted Rose Taupe */
     margin-bottom: 1rem;
 }
 
 /* --- Footer --- */
 .footer {
-    background-color: #1A4314; /* Bolder Color */
-    color: white;
+    background-color: #D7C6B5; /* Cashmere */
+    color: #634832; /* Richer Taupe */
 }
 
 .footer-content {
-    padding: 1rem; /* Reduced padding for a thinner footer */
+    padding: 1rem;
     text-align: center;
 }
