@@ -1,8 +1,8 @@
 /* --- Global Styles & Fonts --- */
 body {
     font-family: 'Inter', sans-serif;
-    background-color: #F5EBE0; /* Almond Beige Base */
-    color: #634832; /* Rich Taupe Text */
+    background-color: #fdf5e1; /* Cream / off-white */
+    color: #854d27; /* Deep Warm Brown */
     line-height: 1.6;
     font-size: 16px; /* Base font size */
 }
@@ -36,7 +36,7 @@ h1, h2, h3, .logo {
     left: 0;
     right: 0;
     z-index: 50;
-    background-color: rgba(245, 235, 224, 0.8); /* Translucent Almond Beige */
+    background-color: rgba(253, 245, 225, 0.8); /* Translucent Cream */
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
@@ -58,7 +58,7 @@ h1, h2, h3, .logo {
 .logo {
     font-size: 1.25rem;
     font-weight: 700;
-    color: #3E2723; /* Deep Charcoal Brown for contrast */
+    color: #854d27; /* Deep Warm Brown */
     text-decoration: none;
 }
 @media (min-width: 768px) {
@@ -82,7 +82,7 @@ h1, h2, h3, .logo {
 .nav-link {
     position: relative;
     text-decoration: none;
-    color: #634832; /* Rich Taupe Text */
+    color: #854d27; /* Deep Warm Brown */
     transition: color 0.3s ease;
 }
 
@@ -94,7 +94,7 @@ h1, h2, h3, .logo {
     bottom: -4px;
     left: 50%;
     transform: translateX(-50%);
-    background-color: #E5A184; /* Soft Terracotta */
+    background-color: #f1a05f; /* Warm orange-peach */
     transition: width 0.3s ease;
 }
 
@@ -106,7 +106,7 @@ h1, h2, h3, .logo {
     background: none;
     border: none;
     cursor: pointer;
-    color: #3E2723; /* Deep Charcoal Brown */
+    color: #854d27; /* Deep Warm Brown */
 }
 
 .mobile-menu-button svg {
@@ -144,14 +144,14 @@ h1, h2, h3, .logo {
 }
 
 .btn-primary {
-    background-color: #E5A184; /* Soft Terracotta */
+    background-color: #f1a05f; /* Warm orange-peach */
     color: #fff;
     font-weight: 500;
     transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 .btn-primary:hover {
-    background-color: #D89076; /* Darker Soft Terracotta */
+    background-color: #e08e4d; /* Darker orange-peach */
     transform: translateY(-2px);
 }
 
@@ -215,13 +215,13 @@ main {
 .section-title {
     font-size: clamp(1.5rem, 5vw, 2.25rem); /* Fluid font size */
     font-weight: 700;
-    color: #3E2723; /* Deep Charcoal Brown */
+    color: #854d27; /* Deep Warm Brown */
     margin-bottom: 0.5rem;
 }
 
 .section-subtitle {
     font-size: clamp(1rem, 3vw, 1.125rem); /* Fluid font size */
-    color: #634832; /* Rich Taupe Text */
+    color: #854d27; /* Deep Warm Brown */
     max-width: 42rem;
     margin: 0 auto;
 }
@@ -255,7 +255,7 @@ main {
     border-radius: 0.5rem;
     overflow: hidden;
     box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-    border: 1px solid #EADFCF; /* Muted Sandalwood Border */
+    border: 1px solid #F7E8D0; /* Lighter Cream Border */
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
@@ -277,7 +277,7 @@ main {
 .product-card-title {
     font-size: 1.125rem;
     font-weight: 600;
-    color: #3E2723; /* Deep Charcoal Brown */
+    color: #854d27; /* Deep Warm Brown */
     margin-bottom: 0.5rem;
 }
 @media (min-width: 768px) {
@@ -288,7 +288,7 @@ main {
 
 .product-card-description {
     font-size: 0.9rem;
-    color: #634832; /* Richer Taupe */
+    color: #a17a5c; /* Lighter Warm Brown */
     margin-bottom: 1rem;
 }
 @media (min-width: 768px) {
@@ -299,8 +299,8 @@ main {
 
 /* --- Footer --- */
 .footer {
-    background-color: #D7C6B5; /* Cashmere */
-    color: #634832; /* Richer Taupe */
+    background-color: #f6d5b8; /* Soft peach-beige */
+    color: #854d27; /* Deep Warm Brown */
 }
 
 .footer-content {
