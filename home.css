@@ -1,90 +1,40 @@
-/* --- Hero Section --- */
-.hero {
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    color: white;
-    padding-top: 4rem; /* For header offset */
-    background-image: url('images/main');
-    background-size: cover;
-    background-position: center;
-}
-
-.hero-content {
-    background-color: rgba(0, 0, 0, 0.4);
-    padding: 2rem;
-    border-radius: 0.5rem;
-}
-
-@media (min-width: 768px) {
-    .hero-content {
-        padding: 3rem;
-    }
-}
-
-.hero-title {
-    font-size: 2.25rem;
-    font-weight: 700;
-    line-height: 1.2;
-    margin-bottom: 1rem;
-}
-
-@media (min-width: 768px) {
-    .hero-title {
-        font-size: 3.75rem;
-    }
-}
-
-.hero-subtitle {
-    font-size: 1.125rem;
-    font-weight: 300;
-    max-width: 42rem;
-    margin: 0 auto;
-}
-
-@media (min-width: 768px) {
-    .hero-subtitle {
-        font-size: 1.25rem;
-    }
-}
-
-.hero .btn {
-    margin-top: 2rem;
-}
-
-/* --- Homepage About Section --- */
-.about-section {
+/* --- Welcome Section --- */
+.welcome-section {
+    background-color: #FAF6F0; /* Light Cream */
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 3rem;
+    gap: 2rem;
+    text-align: center;
 }
 @media (min-width: 768px) {
-    .about-section {
+    .welcome-section {
         flex-direction: row;
-    }
-    .about-section-text {
         text-align: left;
+        gap: 3rem;
     }
 }
-.about-section-image-container {
+.welcome-image-container {
     flex-shrink: 0;
     width: 100%;
+    max-width: 400px;
 }
 @media (min-width: 768px) {
-    .about-section-image-container { width: 50%; }
-    .about-section-text { width: 50%; }
+    .welcome-image-container {
+        width: 50%;
+    }
 }
-.about-section-image {
+.welcome-image {
     width: 100%;
     height: auto;
     border-radius: 0.5rem;
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
 }
+.welcome-text {
+    flex: 1;
+}
 .learn-more-link {
-    color: #1A4314; /* Bolder Color */
+    color: #E5A184; /* Soft Terracotta */
     font-weight: 600;
     text-decoration: none;
     display: inline-block;
@@ -94,50 +44,174 @@
     text-decoration: underline;
 }
 
+/* --- Carousel Section --- */
+.carousel-section {
+    background-color: transparent;
+}
+.carousel-container {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+}
+.carousel-track-container {
+    overflow: hidden;
+}
+.carousel-track {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+.carousel-slide {
+    min-width: 80%;
+    box-sizing: border-box;
+    padding: 0 0.5rem;
+}
+@media (min-width: 640px) {
+    .carousel-slide {
+        min-width: 50%;
+    }
+}
+@media (min-width: 1024px) {
+    .carousel-slide {
+        min-width: 33.33%;
+    }
+}
+.carousel-nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 1.5rem;
+    gap: 1rem;
+}
+.carousel-btn {
+    background: #fff;
+    border: 1px solid #EADFCF;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #634832;
+    transition: all 0.2s ease;
+}
+.carousel-btn:hover {
+    background: #634832;
+    color: #fff;
+}
+.carousel-btn svg {
+    width: 20px;
+    height: 20px;
+}
+.carousel-dots {
+    display: flex;
+    gap: 10px;
+}
+.carousel-dot {
+    height: 10px;
+    width: 10px;
+    border-radius: 50%;
+    background-color: #EADFCF;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    border: none;
+}
+.carousel-dot.active {
+    background-color: #634832;
+}
+
+
+/* --- Product Filter Section --- */
+.product-section {
+    background-color: #D7C6B5; /* Cashmere */
+}
+.filter-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+}
+.filter-btn {
+    background-color: #fff;
+    color: #967259;
+    border: 1px solid #EADFCF;
+    padding: 0.75rem 1.5rem;
+    cursor: pointer;
+    border-radius: 9999px;
+    font-weight: 500;
+    transition: background-color 0.3s, color 0.3s;
+}
+.filter-btn.active, .filter-btn:hover {
+    background-color: #634832;
+    color: white;
+    border-color: #634832;
+}
+.product-grid {
+    display: grid;
+    gap: 2rem;
+    grid-template-columns: 1fr;
+}
+@media (min-width: 640px) {
+    .product-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+@media (min-width: 1024px) {
+    .product-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+
 /* --- Features Section --- */
+.features-section {
+    background-color: #FAF6F0; /* Light Cream */
+}
 .features-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 2rem;
+    gap: 1rem;
     max-width: 56rem;
     margin: 0 auto;
 }
 @media (min-width: 768px) {
     .features-grid {
         grid-template-columns: repeat(5, 1fr);
-        gap: 1rem;
     }
 }
 
 .feature-item {
     text-align: center;
-    background-color: #fff;
-    padding: 1.5rem 1rem;
+    background-color: transparent;
+    padding: 1rem 0.5rem;
     border-radius: 0.5rem;
-    border: 1px solid #f0f0f0;
 }
 
 .feature-icon {
     height: 3rem;
     width: 3rem;
     margin: 0 auto 1rem;
-    color: #C05746; /* Bolder Color */
+    color: #E5A184; /* Soft Terracotta */
 }
 
 .feature-item p {
     font-weight: 500;
-    color: #1A4314; /* Bolder Color */
+    color: #634832; /* Richer Taupe */
 }
 
 /* --- YouTube Section --- */
 .youtube-section {
     text-align: center;
-    background-color: #F5F5DC; /* Bolder Color */
+    background-color: transparent;
     padding: 3rem 1.5rem;
     border-radius: 0.5rem;
 }
 
 /* --- Support Section --- */
+.support-section {
+    background-color: #D7C6B5; /* Cashmere */
+}
 .support-buttons {
     display: flex;
     flex-direction: column;
@@ -153,14 +227,13 @@
 }
 
 .btn-secondary {
-    background-color: #f0f0f0;
-    color: #4A4A4A;
-    border: 1px solid #d1d5db;
+    background-color: #fff;
+    color: #634832;
+    border: 1px solid #EADFCF;
     transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 .btn-secondary:hover {
-    background-color: #e5e7eb;
+    background-color: #FAF6F0;
     transform: translateY(-2px);
 }
-
