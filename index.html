@@ -20,7 +20,6 @@
                 <a href="index.html" class="nav-link" data-page="index">Home</a>
                 <a href="about.html" class="nav-link" data-page="about">About</a>
                 <a href="products.html" class="nav-link" data-page="products">Products</a>
-                <a href="index.html#contact" class="nav-link">Contact</a>
             </nav>
             <a href="products.html" class="btn btn-primary" style="display: none;" media="(min-width: 768px)">Shop Now</a>
             <button id="mobile-menu-button" class="mobile-menu-button">
@@ -35,46 +34,65 @@
         </div>
     </header>
 
-    <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="hero-content">
-            <h1 class="hero-title">Embrace a Natural Lifestyle.</h1>
-            <p class="hero-subtitle">Discover the power of nature with our handcrafted herbal products, made with love and care.</p>
-            <a href="products.html" class="btn btn-primary btn-large">Explore Our Collection</a>
-        </div>
-    </section>
-
-    <main class="container">
-        <!-- About Section -->
-        <section id="about" class="section about-section">
-            <div class="about-section-image-container">
-                <img src="images/main2.jpg" alt="Herbal ingredients in bowls" class="about-section-image" onerror="this.onerror=null;this.src='https://placehold.co/600x400/A9C4A1/4A4A4A?text=Natural+Ingredients';">
+    <main class="container" style="padding-top: 8rem;">
+        <!-- Welcome Section -->
+        <section id="welcome" class="section welcome-section">
+            <div class="welcome-image-container">
+                <img src="images/main2.jpg" alt="Herbal ingredients in bowls" class="welcome-image" onerror="this.onerror=null;this.src='https://placehold.co/600x400/A9C4A1/4A4A4A?text=Natural+Ingredients';">
             </div>
-            <div class="about-section-text">
-                <h2 class="section-title">Welcome to Sruthy's World</h2>
+            <div class="welcome-text">
+                <h1 class="section-title">Welcome to Sruthy's World</h1>
                 <p>At Sruthy's World, we believe that the path to wellness is paved with nature's finest ingredients. Our journey began with a simple passion for herbal remedies and a desire to share their benefits with the world.</p>
                 <a href="about.html" class="learn-more-link">Learn More About Our Story &rarr;</a>
             </div>
         </section>
 
-        <!-- Featured Products Section -->
-        <section id="products" class="section">
+        <!-- Carousel Section -->
+        <section id="carousel" class="section carousel-section">
+             <div class="section-header">
+                <h2 class="section-title">Discover Our Favourites</h2>
+            </div>
+            <div class="carousel-container">
+                <div class="carousel-track-container">
+                    <div class="carousel-track">
+                        <div class="carousel-slide"><div class="product-card"><img src="https://images.unsplash.com/photo-1600195129997-856847c2a7e4?q=80&w=1887&auto=format&fit=crop" alt="Herbal Tea" class="product-card-image"><div class="product-card-content"><h3 class="product-card-title">Calming Chamomile Tea</h3><p class="product-card-description">A soothing blend to help you unwind.</p></div></div></div>
+                        <div class="carousel-slide"><div class="product-card"><img src="https://images.unsplash.com/photo-1629078892103-30752f1b74a3?q=80&w=1887&auto=format&fit=crop" alt="Lavender Body Oil" class="product-card-image"><div class="product-card-content"><h3 class="product-card-title">Lavender Body Oil</h3><p class="product-card-description">Nourish your skin with this luxurious oil.</p></div></div></div>
+                        <div class="carousel-slide"><div class="product-card"><img src="https://images.unsplash.com/photo-1605265492235-3d22e03ff710?q=80&w=1887&auto=format&fit=crop" alt="Healing Salve" class="product-card-image"><div class="product-card-content"><h3 class="product-card-title">Herbal Healing Salve</h3><p class="product-card-description">An all-purpose salve for minor cuts.</p></div></div></div>
+                        <div class="carousel-slide"><div class="product-card"><img src="https://images.unsplash.com/photo-1557925139-cf33657595d2?q=80&w=1887&auto=format&fit=crop" alt="Peppermint Lip Balm" class="product-card-image"><div class="product-card-content"><h3 class="product-card-title">Peppermint Lip Balm</h3><p class="product-card-description">A refreshing and moisturizing lip balm.</p></div></div></div>
+                        <div class="carousel-slide"><div class="product-card"><img src="https://images.unsplash.com/photo-1607006472855-72a33f3a820e?q=80&w=1887&auto=format&fit=crop" alt="Rosemary Hair Oil" class="product-card-image"><div class="product-card-content"><h3 class="product-card-title">Rosemary Hair Oil</h3><p class="product-card-description">Strengthen and revitalize your hair.</p></div></div></div>
+                        <div class="carousel-slide"><div class="product-card"><img src="https://images.unsplash.com/photo-1599746138137-33d3b7a43a9a?q=80&w=1887&auto=format&fit=crop" alt="Eucalyptus Bath Salts" class="product-card-image"><div class="product-card-content"><h3 class="product-card-title">Eucalyptus Bath Salts</h3><p class="product-card-description">Clear your mind and soothe your muscles.</p></div></div></div>
+                    </div>
+                </div>
+                <div class="carousel-nav">
+                    <button class="carousel-btn prev-btn" aria-label="Previous slide"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" /></svg></button>
+                    <div class="carousel-dots"></div>
+                    <button class="carousel-btn next-btn" aria-label="Next slide"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" /></svg></button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Full Product Grid Section -->
+        <section id="products" class="section product-section">
             <div class="section-header">
-                <h2 class="section-title">Our Featured Products</h2>
-                <p class="section-subtitle">Handcrafted with the purest ingredients for your well-being.</p>
+                <h2 class="section-title">Our Full Collection</h2>
+                <div class="filter-buttons">
+                    <button class="filter-btn active" data-filter="all" role="button">All</button>
+                    <button class="filter-btn" data-filter="haircare" role="button">Haircare</button>
+                    <button class="filter-btn" data-filter="skincare" role="button">Skincare</button>
+                </div>
             </div>
-            <div class="grid-container grid-container-cols-3">
-                <div class="product-card"><img src="https://images.unsplash.com/photo-1600195129997-856847c2a7e4?q=80&w=1887&auto=format&fit=crop" alt="Herbal Tea" class="product-card-image" onerror="this.onerror=null;this.src='https://placehold.co/400x300/C4D4C7/4A4A4A?text=Herbal+Tea';"><div class="product-card-content"><h3 class="product-card-title">Calming Chamomile Tea</h3><p class="product-card-description">A soothing blend to help you unwind and relax after a long day.</p></div></div>
-                <div class="product-card"><img src="https://images.unsplash.com/photo-1629078892103-30752f1b74a3?q=80&w=1887&auto=format&fit=crop" alt="Lavender Body Oil" class="product-card-image" onerror="this.onerror=null;this.src='https://placehold.co/400x300/D3CEDC/4A4A4A?text=Body+Oil';"><div class="product-card-content"><h3 class="product-card-title">Lavender Body Oil</h3><p class="product-card-description">Nourish your skin with this luxurious, fast-absorbing oil.</p></div></div>
-                <div class="product-card"><img src="https://images.unsplash.com/photo-1605265492235-3d22e03ff710?q=80&w=1887&auto=format&fit=crop" alt="Healing Salve" class="product-card-image" onerror="this.onerror=null;this.src='https://placehold.co/400x300/E3DBCB/4A4A4A?text=Healing+Salve';"><div class="product-card-content"><h3 class="product-card-title">Herbal Healing Salve</h3><p class="product-card-description">An all-purpose salve to soothe minor cuts, burns, and dry skin.</p></div></div>
-            </div>
-            <div style="text-align: center; margin-top: 3rem;">
-                <a href="products.html" class="btn btn-primary btn-large">View All Products</a>
+            <div class="product-grid">
+                <div class="product-card" data-category="skincare"><img src="https://images.unsplash.com/photo-1629078892103-30752f1b74a3?q=80&w=1887&auto=format&fit=crop" alt="Lavender Body Oil" class="product-card-image"><div class="product-card-content"><h3 class="product-card-title">Lavender Body Oil</h3><p class="product-card-description">Nourish your skin with this luxurious, fast-absorbing oil.</p></div></div>
+                <div class="product-card" data-category="haircare"><img src="https://images.unsplash.com/photo-1607006472855-72a33f3a820e?q=80&w=1887&auto=format&fit=crop" alt="Rosemary Hair Oil" class="product-card-image"><div class="product-card-content"><h3 class="product-card-title">Rosemary Hair Oil</h3><p class="product-card-description">Strengthen and revitalize your hair with our invigorating hair oil.</p></div></div>
+                <div class="product-card" data-category="skincare"><img src="https://images.unsplash.com/photo-1605265492235-3d22e03ff710?q=80&w=1887&auto=format&fit=crop" alt="Healing Salve" class="product-card-image"><div class="product-card-content"><h3 class="product-card-title">Herbal Healing Salve</h3><p class="product-card-description">An all-purpose salve to soothe minor cuts, burns, and dry skin.</p></div></div>
+                <div class="product-card" data-category="skincare"><img src="https://images.unsplash.com/photo-1600195129997-856847c2a7e4?q=80&w=1887&auto=format&fit=crop" alt="Herbal Tea" class="product-card-image"><div class="product-card-content"><h3 class="product-card-title">Calming Chamomile Tea</h3><p class="product-card-description">A soothing blend to help you unwind and relax after a long day.</p></div></div>
+                <div class="product-card" data-category="skincare"><img src="https://images.unsplash.com/photo-1557925139-cf33657595d2?q=80&w=1887&auto=format&fit=crop" alt="Peppermint Lip Balm" class="product-card-image"><div class="product-card-content"><h3 class="product-card-title">Peppermint Lip Balm</h3><p class="product-card-description">A refreshing and moisturizing lip balm made with shea butter.</p></div></div>
+                <div class="product-card" data-category="skincare"><img src="https://images.unsplash.com/photo-1599746138137-33d3b7a43a9a?q=80&w=1887&auto=format&fit=crop" alt="Eucalyptus Bath Salts" class="product-card-image" onerror="this.onerror=null;this.src='https://placehold.co/400x300/F0F0F0/4A4A4A?text=Bath+Salts';"><div class="product-card-content"><h3 class="product-card-title">Eucalyptus Bath Salts</h3><p class="product-card-description">Clear your mind and soothe your muscles with these detoxifying salts.</p></div></div>
             </div>
         </section>
 
         <!-- Features Section -->
-        <section id="features" class="section">
+        <section id="features" class="section features-section">
             <div class="section-header">
                 <h2 class="section-title">Our Promise of Purity</h2>
             </div>
@@ -106,11 +124,11 @@
         <section id="youtube" class="section youtube-section">
             <h2 class="section-title">Join Our Community</h2>
             <p class="section-subtitle" style="margin-bottom: 2rem;">Discover natural remedies, wellness tips, and the stories behind our products on Sruthy's World YouTube channel.</p>
-            <a href="https://www.youtube.com/@Sruthysworld" class="btn btn-primary btn-large">Visit Our Channel</a>
+            <a href="#" class="btn btn-primary btn-large">Visit Our Channel</a>
         </section>
 
         <!-- Support Section -->
-        <section id="support" class="section">
+        <section id="support" class="section support-section">
             <div class="section-header">
                 <h2 class="section-title">We're Here to Help</h2>
             </div>
