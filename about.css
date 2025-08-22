@@ -1,4 +1,3 @@
-
 /* --- About Page Specific Styles --- */
 .about-hero-section {
     display: flex;
@@ -105,11 +104,11 @@
 }
 
 .mission-vision-card {
-    background-color: #EAF0EB;
+    background-color: #F5F5DC; /* Bolder Color */
     padding: 2rem;
     border-radius: 0.5rem;
 }
 .mission-vision-card h3 {
-    color: #3B666B;
+    color: #1A4314; /* Bolder Color */
     margin-bottom: 0.5rem;
 }
