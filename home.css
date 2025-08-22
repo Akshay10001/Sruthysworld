@@ -1,6 +1,6 @@
 /* --- Welcome Section --- */
 .welcome-section {
-    background-color: #FAF6F0; /* Light Cream */
+    background-color: transparent;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -46,7 +46,7 @@
 
 /* --- Carousel Section --- */
 .carousel-section {
-    background-color: transparent;
+    background-color: #FAF6F0; /* Light Cream */
 }
 .carousel-container {
     width: 100%;
@@ -123,20 +123,20 @@
 
 /* --- Product Filter Section --- */
 .product-section {
-    background-color: #D7C6B5; /* Cashmere */
+    background-color: transparent;
 }
 .filter-buttons {
     display: flex;
     justify-content: center;
-    gap: 1rem;
+    gap: 0.5rem;
     margin-bottom: 2rem;
     flex-wrap: wrap;
 }
 .filter-btn {
-    background-color: #fff;
+    background-color: #FAF6F0;
     color: #967259;
     border: 1px solid #EADFCF;
-    padding: 0.75rem 1.5rem;
+    padding: 0.75rem 1.25rem;
     cursor: pointer;
     border-radius: 9999px;
     font-weight: 500;
@@ -149,7 +149,7 @@
 }
 .product-grid {
     display: grid;
-    gap: 2rem;
+    gap: 1.5rem;
     grid-template-columns: 1fr;
 }
 @media (min-width: 640px) {
@@ -166,7 +166,7 @@
 
 /* --- Features Section --- */
 .features-section {
-    background-color: #FAF6F0; /* Light Cream */
+    background-color: #D7C6B5; /* Cashmere */
 }
 .features-grid {
     display: grid;
@@ -189,15 +189,27 @@
 }
 
 .feature-icon {
-    height: 3rem;
-    width: 3rem;
+    height: 2.5rem;
+    width: 2.5rem;
     margin: 0 auto 1rem;
     color: #E5A184; /* Soft Terracotta */
+}
+@media (min-width: 768px) {
+    .feature-icon {
+        height: 3rem;
+        width: 3rem;
+    }
 }
 
 .feature-item p {
     font-weight: 500;
+    font-size: 0.8rem;
     color: #634832; /* Richer Taupe */
+}
+@media (min-width: 768px) {
+    .feature-item p {
+        font-size: 1rem;
+    }
 }
 
 /* --- YouTube Section --- */
@@ -210,7 +222,7 @@
 
 /* --- Support Section --- */
 .support-section {
-    background-color: #D7C6B5; /* Cashmere */
+    background-color: #FAF6F0; /* Light Cream */
 }
 .support-buttons {
     display: flex;
@@ -234,6 +246,6 @@
 }
 
 .btn-secondary:hover {
-    background-color: #FAF6F0;
+    background-color: #F5EBE0;
     transform: translateY(-2px);
 }
