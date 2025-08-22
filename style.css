@@ -2,8 +2,9 @@
 body {
     font-family: 'Inter', sans-serif;
     background-color: #F5EBE0; /* Almond Beige Base */
-    color: #967259; /* Muted Rose Taupe */
+    color: #634832; /* Rich Taupe Text */
     line-height: 1.6;
+    font-size: 16px; /* Base font size */
 }
 
 h1, h2, h3, .logo {
@@ -14,12 +15,17 @@ h1, h2, h3, .logo {
     width: 100%;
     margin-left: auto;
     margin-right: auto;
-    padding-left: 1.5rem;
-    padding-right: 1.5rem;
+    padding-left: 1rem; /* Adjusted for mobile */
+    padding-right: 1rem; /* Adjusted for mobile */
 }
 
-@media (min-width: 640px) { .container { max-width: 640px; } }
-@media (min-width: 768px) { .container { max-width: 768px; } }
+@media (min-width: 768px) {
+    .container {
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
+    }
+}
+
 @media (min-width: 1024px) { .container { max-width: 1024px; } }
 @media (min-width: 1280px) { .container { max-width: 1280px; } }
 
@@ -50,10 +56,15 @@ h1, h2, h3, .logo {
 }
 
 .logo {
-    font-size: 1.5rem;
+    font-size: 1.25rem;
     font-weight: 700;
-    color: #634832; /* Richer Taupe */
+    color: #3E2723; /* Deep Charcoal Brown for contrast */
     text-decoration: none;
+}
+@media (min-width: 768px) {
+    .logo {
+        font-size: 1.5rem;
+    }
 }
 
 .main-nav {
@@ -71,7 +82,7 @@ h1, h2, h3, .logo {
 .nav-link {
     position: relative;
     text-decoration: none;
-    color: #967259; /* Muted Rose Taupe */
+    color: #634832; /* Rich Taupe Text */
     transition: color 0.3s ease;
 }
 
@@ -95,7 +106,7 @@ h1, h2, h3, .logo {
     background: none;
     border: none;
     cursor: pointer;
-    color: #634832; /* Richer Taupe */
+    color: #3E2723; /* Deep Charcoal Brown */
 }
 
 .mobile-menu-button svg {
@@ -134,7 +145,8 @@ h1, h2, h3, .logo {
 
 .btn-primary {
     background-color: #E5A184; /* Soft Terracotta */
-    color: white;
+    color: #fff;
+    font-weight: 500;
     transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
@@ -162,14 +174,25 @@ main {
 }
 
 .page-header {
-    padding-top: 8rem;
+    padding-top: 6rem; /* Adjusted for mobile */
     padding-bottom: 4rem;
+}
+@media (min-width: 768px) {
+    .page-header {
+        padding-top: 8rem;
+    }
 }
 
 .section {
-    margin-bottom: 6rem;
-    padding: 3rem 2rem;
+    margin-bottom: 4rem; /* Adjusted for mobile */
+    padding: 2rem 1.5rem;
     border-radius: 0.5rem;
+}
+@media (min-width: 768px) {
+    .section {
+        margin-bottom: 6rem;
+        padding: 3rem 2rem;
+    }
 }
 .section:last-child {
     margin-bottom: 0;
@@ -181,25 +204,24 @@ main {
 
 .section-header {
     text-align: center;
-    margin-bottom: 3rem;
+    margin-bottom: 2rem;
 }
-
-.section-title {
-    font-size: 1.875rem;
-    font-weight: 700;
-    color: #634832; /* Richer Taupe */
-    margin-bottom: 0.5rem;
-}
-
 @media (min-width: 768px) {
-    .section-title {
-        font-size: 2.25rem;
+    .section-header {
+        margin-bottom: 3rem;
     }
 }
 
+.section-title {
+    font-size: clamp(1.5rem, 5vw, 2.25rem); /* Fluid font size */
+    font-weight: 700;
+    color: #3E2723; /* Deep Charcoal Brown */
+    margin-bottom: 0.5rem;
+}
+
 .section-subtitle {
-    font-size: 1.125rem;
-    color: #967259; /* Muted Rose Taupe */
+    font-size: clamp(1rem, 3vw, 1.125rem); /* Fluid font size */
+    color: #634832; /* Rich Taupe Text */
     max-width: 42rem;
     margin: 0 auto;
 }
@@ -207,10 +229,14 @@ main {
 /* --- Grids (Shared) --- */
 .grid-container {
     display: grid;
-    gap: 2rem;
+    gap: 1.5rem;
     grid-template-columns: 1fr;
 }
-
+@media (min-width: 768px) {
+    .grid-container {
+        gap: 2rem;
+    }
+}
 @media (min-width: 640px) {
     .grid-container-cols-2 {
         grid-template-columns: repeat(2, 1fr);
@@ -249,15 +275,26 @@ main {
 }
 
 .product-card-title {
-    font-size: 1.25rem;
+    font-size: 1.125rem;
     font-weight: 600;
-    color: #634832; /* Richer Taupe */
+    color: #3E2723; /* Deep Charcoal Brown */
     margin-bottom: 0.5rem;
+}
+@media (min-width: 768px) {
+    .product-card-title {
+        font-size: 1.25rem;
+    }
 }
 
 .product-card-description {
-    color: #967259; /* Muted Rose Taupe */
+    font-size: 0.9rem;
+    color: #634832; /* Richer Taupe */
     margin-bottom: 1rem;
+}
+@media (min-width: 768px) {
+    .product-card-description {
+        font-size: 1rem;
+    }
 }
 
 /* --- Footer --- */
