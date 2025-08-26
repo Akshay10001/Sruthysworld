@@ -114,6 +114,40 @@ document.addEventListener('DOMContentLoaded', function () {
                     slideWidth = slides[0].getBoundingClientRect().width;
                     moveToSlide(currentIndex);
                 });
+
+                const dragStart = (e) => {
+                    isDragging = true;
+                    startPos = e.type.includes('mouse') ? e.pageX : e.touches[0].clientX;
+                    track.style.transition = 'none';
+                };
+
+                const dragMove = (e) => {
+                    if (isDragging) {
+                        const currentPosition = e.type.includes('mouse') ? e.pageX : e.touches[0].clientX;
+                        currentTranslate = prevTranslate + currentPosition - startPos;
+                        track.style.transform = `translateX(${currentTranslate}px)`;
+                    }
+                };
+
+                const dragEnd = () => {
+                    isDragging = false;
+                    const movedBy = currentTranslate - prevTranslate;
+                    if (movedBy < -100 && currentIndex < slides.length - 1) {
+                        currentIndex++;
+                    }
+                    if (movedBy > 100 && currentIndex > 0) {
+                        currentIndex--;
+                    }
+                    moveToSlide(currentIndex);
+                };
+
+                track.addEventListener('mousedown', dragStart);
+                track.addEventListener('touchstart', dragStart);
+                track.addEventListener('mouseup', dragEnd);
+                track.addEventListener('touchend', dragEnd);
+                track.addEventListener('mouseleave', () => { if (isDragging) dragEnd(); });
+                track.addEventListener('mousemove', dragMove);
+                track.addEventListener('touchmove', dragMove);
             }
         }
 

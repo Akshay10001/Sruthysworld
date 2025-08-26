@@ -1,3 +1,4 @@
+
 /* --- Welcome Section --- */
 .welcome-section {
     background-color: transparent;
@@ -17,11 +18,11 @@
 .welcome-image-container {
     flex-shrink: 0;
     width: 100%;
-    max-width: 400px;
+    max-width: 600px;
 }
 @media (min-width: 768px) {
     .welcome-image-container {
-        width: 50%;
+        width: 60%;
     }
 }
 .welcome-image {
@@ -47,11 +48,18 @@
 /* --- Carousel Section --- */
 .carousel-section {
     background-color: #FAF6F0; /* Light Cream */
+    margin-bottom: 2rem; /* Reduced margin for mobile */
+}
+@media (min-width: 768px) {
+    .carousel-section {
+        margin-bottom: 0.5rem; /* Reduced margin for desktop */
+    }
 }
 .carousel-container {
     width: 100%;
     overflow: hidden;
     position: relative;
+    cursor: grab; /* Indicate draggable */
 }
 .carousel-track-container {
     overflow: hidden;
