@@ -1,0 +1,114 @@
+/* --- About Page Specific Styles --- */
+.about-hero-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    text-align: center;
+    background-color: #FAF6F0; /* Light Cream */
+}
+
+@media (min-width: 1024px) {
+    .about-hero-section {
+        flex-direction: row;
+        text-align: left;
+        gap: 4rem;
+    }
+}
+
+.about-hero-image-container {
+    flex-shrink: 0;
+    width: 100%;
+    max-width: 400px;
+}
+
+@media (min-width: 1024px) {
+    .about-hero-image-container {
+        flex-basis: 45%;
+    }
+}
+
+.about-hero-image {
+    width: 100%;
+    height: auto;
+    border-radius: 0.75rem;
+    box-shadow: 0 20px 25px -5px rgba(0,0,0,.1),0 8px 10px -6px rgba(0,0,0,.1);
+    object-fit: cover;
+}
+
+.about-hero-text {
+    flex: 1;
+}
+
+.content-section {
+    background-color: transparent;
+    padding: 2rem 0;
+    border-radius: 0.5rem;
+    margin-bottom: 2rem;
+}
+@media (min-width: 768px) {
+    .content-section {
+        padding: 3rem 0;
+    }
+}
+
+.content-with-image {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    align-items: center;
+}
+
+@media (min-width: 768px) {
+    .content-with-image {
+        flex-direction: row;
+        gap: 3rem;
+    }
+    .content-with-image.reverse {
+        flex-direction: row-reverse;
+    }
+}
+
+.content-image-container {
+    flex-shrink: 0;
+    width: 100%;
+    max-width: 300px;
+}
+
+@media (min-width: 768px) {
+    .content-image-container {
+        flex-basis: 35%;
+    }
+}
+
+.content-image {
+    width: 100%;
+    height: auto;
+    border-radius: 0.5rem;
+    box-shadow: 0 10px 15px -3px rgba(0,0,0,.1),0 4px 6px -4px rgba(0,0,0,.1);
+}
+
+.content-text {
+    flex: 1;
+}
+
+.mission-vision-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+}
+@media (min-width: 768px) {
+    .mission-vision-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+.mission-vision-card {
+    background-color: #D7C6B5; /* Cashmere */
+    padding: 2rem;
+    border-radius: 0.5rem;
+}
+.mission-vision-card h3 {
+    color: #634832; /* Richer Taupe */
+    margin-bottom: 0.5rem;
+}

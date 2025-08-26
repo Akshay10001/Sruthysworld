@@ -1,0 +1,116 @@
+/* --- Contact Page Specific Styles --- */
+.contact-layout {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    background-color: #fff;
+    border: 1px solid #f6d5b8;
+    border-radius: 0.5rem;
+    overflow: hidden; /* To keep border-radius on map */
+}
+@media (min-width: 768px) {
+    .contact-layout {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+.contact-details {
+    padding: 2rem;
+}
+@media (min-width: 768px) {
+    .contact-details {
+        padding: 3rem;
+    }
+}
+
+.contact-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.contact-icon {
+    flex-shrink: 0;
+    width: 40px;
+    height: 40px;
+    background-color: #f6d5b8;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #854d27;
+}
+.contact-icon svg {
+    width: 20px;
+    height: 20px;
+}
+
+.contact-item h3 {
+    margin: 0 0 0.25rem 0;
+    font-size: 1.25rem;
+    color: #854d27;
+}
+.contact-item p, .contact-item a {
+    margin: 0;
+    color: #a17a5c;
+    text-decoration: none;
+}
+.contact-item a:hover {
+    text-decoration: underline;
+}
+
+.map-container {
+    width: 100%;
+    height: 100%;
+    min-height: 300px;
+}
+.map-container iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+/* --- Support Section --- */
+.support-section {
+    background-color: #FAF6F0; /* Light Cream */
+}
+.support-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+}
+@media (min-width: 768px) {
+    .support-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+.support-card {
+    background-color: #fff;
+    border: 1px solid #EADFCF;
+    border-radius: 0.5rem;
+    padding: 2rem;
+    text-align: center;
+    text-decoration: none;
+    color: #634832;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.support-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 15px -3px rgba(0,0,0,.05);
+}
+.support-icon {
+    width: 48px;
+    height: 48px;
+    margin: 0 auto 1rem;
+    color: #E5A184;
+}
+.support-card h3 {
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+}
+.support-card p {
+    font-size: 0.9rem;
+    color: #967259;
+}

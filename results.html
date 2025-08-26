@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sruthy's World - Natural Herbal Lifestyle</title>
+    <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="styles/results.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+</head>
+<body class="antialiased">
+
+    <!-- Header & Navigation -->
+    <header id="header" class="header">
+        <div class="container header-content">
+            <a href="index.html" class="logo">Sruthy's World</a>
+            <nav class="main-nav">
+                <a href="index.html" class="nav-link" data-page="index">Home</a>
+                <a href="about.html" class="nav-link" data-page="about">About</a>
+                <a href="products.html" class="nav-link" data-page="products">Products</a>
+                <a href="results.html" class="nav-link" data-page="results">Results</a>
+                <a href="contact.html" class="nav-link" data-page="contact">Contact Us</a>
+            </nav>
+            <div class="nav-icons">
+                <a href="account.html" class="icon-link" aria-label="My Account"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" /></svg></a>
+                <a href="cart.html" class="icon-link" aria-label="Cart">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.658-.463 1.243-1.119 1.243H4.555c-.656 0-1.189-.585-1.119-1.243l1.263-12a1.125 1.125 0 011.119-1.007h8.858c.482 0 .923.29.1.08.744z" /></svg>
+                    <span class="cart-count">0</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main class="container page-header">
+        <div class="section-header">
+            <h1 class="section-title">Customer Results</h1>
+            <p class="section-subtitle">See the amazing transformations from our community.</p>
+        </div>
+
+        <div class="results-grid">
+            <div class="result-image-container">
+                <img src="https://images.unsplash.com/photo-1596495756121-1a48424e8e2c?q=80&w=1887&auto=format&fit=crop" alt="Customer result 1">
+            </div>
+            <div class="result-image-container">
+                <img src="https://images.unsplash.com/photo-1560275899-769352523f3c?q=80&w=1887&auto=format&fit=crop" alt="Customer result 2">
+            </div>
+            <div class="result-image-container">
+                <img src="https://images.unsplash.com/photo-1599331837133-d57a2b3a4a44?q=80&w=1887&auto=format&fit=crop" alt="Customer result 3">
+            </div>
+            <div class="result-image-container">
+                <img src="https://images.unsplash.com/photo-1616013654273-d73733076735?q=80&w=1887&auto=format&fit=crop" alt="Customer result 4">
+            </div>
+            <div class="result-image-container">
+                <img src="https://images.unsplash.com/photo-1615025959737-8e67a033575a?q=80&w=1887&auto=format&fit=crop" alt="Customer result 5">
+            </div>
+            <div class="result-image-container">
+                <img src="https://images.unsplash.com/photo-1612872087720-bb876e2e67d1?q=80&w=1907&auto=format&fit=crop" alt="Customer result 6">
+            </div>
+        </div>
+    </main>
+
+    <!-- Lightbox -->
+    <div id="lightbox" class="lightbox">
+        <div class="lightbox-content">
+            <img src="" alt="Fullscreen result" class="lightbox-image">
+        </div>
+        <button class="lightbox-btn prev" aria-label="Previous image"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" /></svg></button>
+        <button class="lightbox-btn next" aria-label="Next image"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" /></svg></button>
+        <button class="lightbox-btn close" aria-label="Close lightbox"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" /></svg></button>
+    </div>
+
+    <div class="mobile-dock">
+        <div class="nav-dock-links">
+            <a href="index.html" class="dock-link" data-page="index">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h7.5" /></svg>
+                <span>Home</span>
+            </a>
+            <a href="products.html" class="dock-link" data-page="products">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6A2.25 2.25 0 016 3.75h2.25A2.25 2.25 0 0110.5 6v2.25a2.25 2.25 0 01-2.25 2.25H6a2.25 2.25 0 01-2.25-2.25V6zM3.75 15.75A2.25 2.25 0 016 13.5h2.25a2.25 2.25 0 012.25 2.25V18a2.25 2.25 0 01-2.25 2.25H6a2.25 2.25 0 01-2.25-2.25v-2.25zM13.5 6a2.25 2.25 0 012.25-2.25H18A2.25 2.25 0 0120.25 6v2.25A2.25 2.25 0 0118 10.5h-2.25a2.25 2.25 0 01-2.25-2.25V6zM13.5 15.75a2.25 2.25 0 012.25-2.25H18a2.25 2.25 0 012.25 2.25V18A2.25 2.25 0 0118 20.25h-2.25A2.25 2.25 0 0113.5 18v-2.25z" /></svg>
+                <span>Products</span>
+            </a>
+            <a href="about.html" class="dock-link" data-page="about">
+                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9 5.25h.008v.008H12v-.008z" /></svg>
+                <span>About</span>
+            </a>
+            <a href="contact.html" class="dock-link" data-page="contact">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" /></svg>
+                <span>Contact</span>
+            </a>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <h3>Sruthy's World</h3>
+                    <p>Your journey to natural wellness.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                        <li><a href="refund-policy.html">Refunds & Return Policy</a></li>
+                        <li><a href="shipping-policy.html">Delivery & Shipping</a></li>
+                    </ul>
+                </div>
+                <div class="footer-social">
+                    <h4>Follow Us</h4>
+                    <ul>
+                        <li><a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M22,12c0-5.52-4.48-10-10-10S2,6.48,2,12c0,4.84,3.44,8.87,8,9.8V15H8v-3h2V9.5C10,7.57,11.57,6,13.5,6H16v3h-2 c-0.55,0-1,0.45-1,1v2h3v3h-3v6.95C18.05,21.45,22,17.19,22,12z"/></svg></a></li>
+                        <li><a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M7.8,2H16.2C19.4,2 22,4.6 22,7.8V16.2A5.8,5.8 0 0,1 16.2,22H7.8C4.6,22 2,19.4 2,16.2V7.8A5.8,5.8 0 0,1 7.8,2M7.6,4A3.6,3.6 0 0,0 4,7.6V16.4C4,18.39 5.61,20 7.6,20H16.4A3.6,3.6 0 0,0 20,16.4V7.6C20,5.61 18.39,4 16.4,4H7.6M17.25,5.5A1.25,1.25 0 0,1 18.5,6.75A1.25,1.25 0 0,1 17.25,8A1.25,1.25 0 0,1 16,6.75A1.25,1.25 0 0,1 17.25,5.5M12,7A5,5 0 0,1 17,12A5,5 0 0,1 12,17A5,5 0 0,1 7,12A5,5 0 0,1 12,7M12,9A3,3 0 0,0 9,12A3,3 0 0,0 12,15A3,3 0 0,0 15,12A3,3 0 0,0 12,9Z" /></svg></a></li>
+                        <li><a href="#" aria-label="YouTube"><svg viewBox="0 0 24 24"><path d="M21.58,7.19c-0.23-0.86-0.9-1.52-1.76-1.75C18,5,12,5,12,5s-6,0-7.82,0.44C3.32,5.67,2.66,6.33,2.43,7.19 C2,8.05,2,12,2,12s0,3.95,0.43,4.81c0.23,0.86,0.9,1.52,1.76,1.75C6,19,12,19,12,19s6,0,7.82-0.44 c0.86-0.23,1.52-0.9,1.75-1.75C22,15.95,22,12,22,12S22,8.05,21.58,7.19z M10,15V9l5.2,3L10,15z"/></svg></a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-copyright">
+                <p>&copy; <span id="year"></span> Sruthy's World. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>

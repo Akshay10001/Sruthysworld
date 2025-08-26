@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sruthy's World - Natural Herbal Lifestyle</title>
+    <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="styles/standard-product-page.css">
+    <link rel="stylesheet" href="styles/product-page.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+</head>
+<body class="antialiased">
+
+    <!-- Header & Navigation -->
+    <header id="header" class="header">
+        <div class="container header-content">
+            <a href="index.html" class="logo">Sruthy's World</a>
+            <nav class="main-nav">
+                <a href="index.html" class="nav-link" data-page="index">Home</a>
+                <a href="about.html" class="nav-link" data-page="about">About</a>
+                <a href="products.html" class="nav-link" data-page="products">Products</a>
+                <a href="results.html" class="nav-link" data-page="results">Results</a>
+                <a href="contact.html" class="nav-link" data-page="contact">Contact Us</a>
+            </nav>
+            <div class="nav-icons">
+                <a href="account.html" class="icon-link" aria-label="My Account"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" /></svg></a>
+                <a href="cart.html" class="icon-link" aria-label="Cart">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.658-.463 1.243-1.119 1.243H4.555c-.656 0-1.189-.585-1.119-1.243l1.263-12a1.125 1.125 0 011.119-1.007h8.858c.482 0 .923.29.1.08.744z" /></svg>
+                    <span class="cart-count">0</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main class="container page-header">
+        <div class="product-detail-layout">
+            <div class="product-image-gallery">
+                <img src="images/product-images/coconutoil.JPG" alt="coconut oil" class="main-image" id="main-product-image">
+                <div class="product-thumbnails">
+                    <img src="images/product-images/coconutoil.JPG" alt="coconut oil" class="thumbnail-image active">
+                    <img src="images/product-images/coconutoil2.png" alt="coconut oil" class="thumbnail-image active">
+
+                    <!-- Add more thumbnails if available -->
+                </div>
+            </div>
+            <div class="product-info">
+                <h1>Home Made Pure Virgin Coconut Oil</h1>
+                <p class="price" id="product-price">₹1000</p>
+                <p class="description">Urukku Velichenna(ഉരുക്ക് വെളിച്ചെണ്ണ) is an age-old health and beauty recipe that preserves all the essential nutrients of coconut. As pure as mother’s milk, it is carefully prepared from the milk of matured, organically grown coconuts using traditional Kerala brass vessels.</p>
+                
+                <div class="quantity-selector">
+                    <button class="quantity-btn minus-btn" type="button">-</button>
+                    <input type="number" class="quantity-input" value="1" min="1">
+                    <button class="quantity-btn plus-btn" type="button">+</button>
+                </div>
+
+                <button class="btn btn-primary btn-large add-to-cart-btn">Add to Cart</button>
+                
+                <div class="share-section">
+                    <p>Share:</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link facebook" target="_blank" aria-label="Share on Facebook"><svg viewBox="0 0 24 24"><path d="M22,12c0-5.52-4.48-10-10-10S2,6.48,2,12c0,4.84,3.44,8.87,8,9.8V15H8v-3h2V9.5C10,7.57,11.57,6,13.5,6H16v3h-2 c-0.55,0-1,0.45-1,1v2h3v3h-3v6.95C18.05,21.45,22,17.19,22,12z"/></svg></a>
+                        <a href="#" class="social-link twitter" target="_blank" aria-label="Share on Twitter"><svg viewBox="0 0 24 24"><path d="M22.46,6c-0.77,0.35-1.6,0.58-2.46,0.67c0.88-0.53,1.56-1.37,1.88-2.38c-0.83,0.5-1.75,0.85-2.72,1.05 C18.37,4.5,17.26,4,16,4c-2.35,0-4.27,1.92-4.27,4.29c0,0.33,0.04,0.66,0.11,0.97C8.28,9.09,5.15,7.38,3,4.79 C2.63,5.42,2.42,6.16,2.42,6.94c0,1.49,0.76,2.8,1.9,3.57C3.66,10.49,3.02,10.3,2.45,10v0.05c0,2.08,1.48,3.82,3.44,4.21 c-0.36,0.1-0.74,0.15-1.12,0.15c-0.28,0-0.55-0.03-0.81-0.08c0.55,1.7,2.13,2.94,4,2.97c-1.47,1.15-3.32,1.83-5.33,1.83 c-0.35,0-0.69-0.02-1.03-0.06C2.64,20.44,4.77,21,7,21c7.7,0,11.91-6.38,11.91-11.91c0-0.18,0-0.36-0.01-0.54 C19.78,7.68,20.58,7.05,21.24,6.33L22.46,6z"/></svg></a>
+                        <a href="#" class="social-link whatsapp" target="_blank" aria-label="Share on WhatsApp"><svg viewBox="0 0 24 24"><path d="M16.75,13.96c-0.41-0.21-2.42-1.19-2.79-1.32c-0.37-0.13-0.64-0.21-0.91,0.21c-0.27,0.41-1.05,1.32-1.29,1.59 c-0.24,0.27-0.48,0.3-0.89,0.1c-0.41-0.21-1.73-0.64-3.3-2.03C6.22,11.23,5.6,10.1,5.4,9.68c-0.21-0.41-0.02-0.64,0.18-0.84 c0.19-0.18,0.41-0.48,0.61-0.72c0.21-0.24,0.27-0.41,0.41-0.68c0.13-0.27,0.07-0.51-0.07-0.71c-0.13-0.21-0.91-2.18-1.24-2.98 c-0.34-0.81-0.68-0.69-0.91-0.7c-0.22-0.02-0.48-0.02-0.75-0.02c-0.27,0-0.69,0.1-1.05,0.48c-0.37,0.37-1.42,1.39-1.42,3.39 c0,2,1.45,3.94,1.65,4.21c0.21,0.27,2.87,4.36,6.96,6.14c0.95,0.41,1.69,0.66,2.28,0.84c0.88,0.27,1.69,0.23,2.32,0.14 c0.71-0.1,2.21-0.9,2.52-1.76c0.31-0.86,0.31-1.59,0.21-1.76C17.39,14.16,17.16,14.06,16.75,13.96z M12,2C6.48,2,2,6.48,2,12 c0,5.52,4.48,10,10,10c5.52,0,10-4.48,10-10C22,6.48,17.52,2,12,2z M12,20.5c-4.69,0-8.5-3.81-8.5-8.5c0-4.69,3.81-8.5,8.5-8.5 c4.69,0,8.5,3.81,8.5,8.5C20.5,16.69,16.69,20.5,12,20.5z"/></svg></a>
+                        <a href="#" class="social-link copy-link" aria-label="Copy product link"><svg viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></a>
+                    </div>
+                </div>
+                <div id="copy-tooltip" class="copy-tooltip">Link Copied!</div>
+            </div>
+        </div>
+
+        <div class="product-extra-details">
+            <div class="section-header">
+                <h2 class="section-title">Pure & Simple</h2>
+            </div>
+            <div class="grid-container grid-container-cols-2">
+                <div>
+                    <h3>Key Ingredients</h3>
+                    <ul>
+                        <li>Calendula</li>
+                        <li>Comfrey</li>
+                        <li>Organic Olive Oil</li>
+                        <li>Beeswax</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3>How to Use</h3>
+                    <p>Apply a small amount to the needed area. For external use only.</p>
+                    <p>Quantity: 200ml</p>
+                </div>
+            </div>
+        </div>
+
+        <section class="product-recommendations">
+            <div class="section-header">
+                <h2 class="section-title">Related Products</h2>
+            </div>
+            <div class="grid-container grid-container-cols-3">
+                <a href="lavender-oil.html" class="product-card"><img src="https://images.unsplash.com/photo-1629078892103-30752f1b74a3?q=80&w=1887&auto=format&fit=crop" alt="Lavender Body Oil" class="product-card-image"><div class="product-card-content"><h3 class="product-card-title">Lavender Body Oil</h3><p class="product-card-description">Nourish your skin with this luxurious oil.</p></div></a>
+                <a href="#" class="product-card"><img src="https://images.unsplash.com/photo-1557925139-cf33657595d2?q=80&w=1887&auto=format&fit=crop" alt="Peppermint Lip Balm" class="product-card-image"><div class="product-card-content"><h3 class="product-card-title">Peppermint Lip Balm</h3><p class="product-card-description">A refreshing and moisturizing lip balm.</p></div></a>
+                <a href="#" class="product-card"><img src="https://images.unsplash.com/photo-1599746138137-33d3b7a43a9a?q=80&w=1887&auto=format&fit=crop" alt="Eucalyptus Bath Salts" class="product-card-image"><div class="product-card-content"><h3 class="product-card-title">Eucalyptus Bath Salts</h3><p class="product-card-description">Clear your mind and soothe your muscles.</p></div></a>
+            </div>
+        </section>
+        
+        <section class="product-recommendations">
+            <div class="section-header">
+                <h2 class="section-title">Recently Visited</h2>
+            </div>
+            <div class="grid-container grid-container-cols-3">
+                <!-- This would be populated dynamically -->
+                <a href="lavender-oil.html" class="product-card"><img src="https://images.unsplash.com/photo-1629078892103-30752f1b74a3?q=80&w=1887&auto=format&fit=crop" alt="Lavender Body Oil" class="product-card-image"><div class="product-card-content"><h3 class="product-card-title">Lavender Body Oil</h3><p class="product-card-description">Nourish your skin with this luxurious oil.</p></div></a>
+            </div>
+        </section>
+    </main>
+
+    <div class="mobile-dock">
+        <div class="nav-dock-links">
+            <a href="index.html" class="dock-link" data-page="index">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h7.5" /></svg>
+                <span>Home</span>
+            </a>
+            <a href="products.html" class="dock-link" data-page="products">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6A2.25 2.25 0 016 3.75h2.25A2.25 2.25 0 0110.5 6v2.25a2.25 2.25 0 01-2.25 2.25H6a2.25 2.25 0 01-2.25-2.25V6zM3.75 15.75A2.25 2.25 0 016 13.5h2.25a2.25 2.25 0 012.25 2.25V18a2.25 2.25 0 01-2.25 2.25H6a2.25 2.25 0 01-2.25-2.25v-2.25zM13.5 6a2.25 2.25 0 012.25-2.25H18A2.25 2.25 0 0120.25 6v2.25A2.25 2.25 0 0118 10.5h-2.25a2.25 2.25 0 01-2.25-2.25V6zM13.5 15.75a2.25 2.25 0 012.25-2.25H18a2.25 2.25 0 012.25 2.25V18A2.25 2.25 0 0118 20.25h-2.25A2.25 2.25 0 0113.5 18v-2.25z" /></svg>
+                <span>Products</span>
+            </a>
+            <a href="about.html" class="dock-link" data-page="about">
+                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9 5.25h.008v.008H12v-.008z" /></svg>
+                <span>About</span>
+            </a>
+            <a href="contact.html" class="dock-link" data-page="contact">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" /></svg>
+                <span>Contact</span>
+            </a>
+        </div>
+    </div>
+
+    <!-- Footer -->
+     <footer class="footer">
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <h3>Sruthy's World</h3>
+                <p>Your journey to natural wellness.</p>
+            </div>
+            <div class="footer-links">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                    <li><a href="refund-policy.html">Refunds & Return Policy</a></li>
+                    <li><a href="shipping-policy.html">Delivery & Shipping</a></li>
+                </ul>
+            </div>
+            <div class="footer-social">
+                <h4>Follow Us</h4>
+                <ul>
+                    <li><a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M22,12c0-5.52-4.48-10-10-10S2,6.48,2,12c0,4.84,3.44,8.87,8,9.8V15H8v-3h2V9.5C10,7.57,11.57,6,13.5,6H16v3h-2 c-0.55,0-1,0.45-1,1v2h3v3h-3v6.95C18.05,21.45,22,17.19,22,12z"/></svg></a></li>
+                    <li><a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M7.8,2H16.2C19.4,2 22,4.6 22,7.8V16.2A5.8,5.8 0 0,1 16.2,22H7.8C4.6,22 2,19.4 2,16.2V7.8A5.8,5.8 0 0,1 7.8,2M7.6,4A3.6,3.6 0 0,0 4,7.6V16.4C4,18.39 5.61,20 7.6,20H16.4A3.6,3.6 0 0,0 20,16.4V7.6C20,5.61 18.39,4 16.4,4H7.6M17.25,5.5A1.25,1.25 0 0,1 18.5,6.75A1.25,1.25 0 0,1 17.25,8A1.25,1.25 0 0,1 16,6.75A1.25,1.25 0 0,1 17.25,5.5M12,7A5,5 0 0,1 17,12A5,5 0 0,1 12,17A5,5 0 0,1 7,12A5,5 0 0,1 12,7M12,9A3,3 0 0,0 9,12A3,3 0 0,0 12,15A3,3 0 0,0 15,12A3,3 0 0,0 12,9Z" /></svg></a></li>
+                    <li><a href="#" aria-label="YouTube"><svg viewBox="0 0 24 24"><path d="M21.58,7.19c-0.23-0.86-0.9-1.52-1.76-1.75C18,5,12,5,12,5s-6,0-7.82,0.44C3.32,5.67,2.66,6.33,2.43,7.19 C2,8.05,2,12,2,12s0,3.95,0.43,4.81c0.23,0.86,0.9,1.52,1.76,1.75C6,19,12,19,12,19s6,0,7.82-0.44 c0.86-0.23,1.52-0.9,1.75-1.75C22,15.95,22,12,22,12S22,8.05,21.58,7.19z M10,15V9l5.2,3L10,15z"/></svg></a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-copyright">
+            <p>&copy; <span id="year"></span> Sruthy's World. All Rights Reserved.</p>
+        </div>
+    </div>
+</footer>
+    <script src="script.js"></script>
+</body>
+</html>

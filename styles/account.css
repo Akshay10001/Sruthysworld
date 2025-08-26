@@ -1,0 +1,88 @@
+
+/* --- Account Page Specific Styles --- */
+.account-container {
+    max-width: 450px;
+    margin: 0 auto;
+    background-color: #fff;
+    border: 1px solid #f6d5b8;
+    border-radius: 0.5rem;
+    padding: 2rem;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+@media (min-width: 768px) {
+    .account-container {
+        padding: 3rem;
+    }
+}
+
+.form-toggle {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 2rem;
+    background-color: #fdf5e1;
+    border-radius: 9999px;
+    padding: 0.5rem;
+}
+
+.toggle-btn {
+    flex: 1;
+    padding: 0.75rem 1rem;
+    border: none;
+    background-color: transparent;
+    color: #854d27;
+    font-weight: 500;
+    cursor: pointer;
+    border-radius: 9999px;
+    transition: all 0.3s ease;
+}
+
+.toggle-btn.active {
+    background-color: #fff;
+    color: #854d27;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.form-input-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-input-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #854d27;
+    font-weight: 500;
+}
+
+.form-input-group input {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 1px solid #f6d5b8;
+    border-radius: 0.25rem;
+    background-color: #fdf5e1;
+    color: #854d27;
+}
+.form-input-group input:focus {
+    outline: none;
+    border-color: #f1a05f;
+    box-shadow: 0 0 0 2px rgba(241, 160, 95, 0.3);
+}
+
+.form-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.9rem;
+}
+
+.form-actions a {
+    color: #f1a05f;
+    text-decoration: none;
+}
+.form-actions a:hover {
+    text-decoration: underline;
+}
+
+#register-form {
+    display: none; /* Hidden by default */
+}
