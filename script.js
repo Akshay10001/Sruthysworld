@@ -78,6 +78,10 @@ document.addEventListener('DOMContentLoaded', function () {
             if (slides.length > 0) {
                 let slideWidth = slides[0].getBoundingClientRect().width;
                 let currentIndex = 0;
+                let isDragging = false;
+                let startPos = 0;
+                let currentTranslate = 0;
+                let prevTranslate = 0;
 
                 slides.forEach((_, i) => {
                     const dot = document.createElement('button');
@@ -89,10 +93,12 @@ document.addEventListener('DOMContentLoaded', function () {
                 const dots = Array.from(dotsContainer.children);
 
                 const moveToSlide = (targetIndex) => {
+                    track.style.transition = 'transform 0.5s ease-in-out';
                     const newTransform = -slideWidth * targetIndex;
                     track.style.transform = 'translateX(' + newTransform + 'px)';
                     currentIndex = targetIndex;
                     updateDots(targetIndex);
+                    prevTranslate = newTransform;
                 };
 
                 const updateDots = (targetIndex) => {
@@ -115,6 +121,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     moveToSlide(currentIndex);
                 });
 
+                // Touch/Drag functionality
                 const dragStart = (e) => {
                     isDragging = true;
                     startPos = e.type.includes('mouse') ? e.pageX : e.touches[0].clientX;
