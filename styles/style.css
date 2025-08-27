@@ -230,14 +230,12 @@ h1, h2, h3, .logo {
 /* --- Main Content & Sections (Shared) --- */
 main {
     flex: 1 0 auto; /* This makes the main content grow to fill available space */
-    padding-top: 70px; /* Reduced from 80px for a snugger fit on mobile */
+    padding-top: 10px; /* Reduced from 80px for a snugger fit on mobile */
     padding-bottom: 4rem;
 }
 
 @media (min-width: 768px) {
     main {
-        padding-top: 3rem;
-        padding-bottom: 4rem;
         padding-top: 80px;
     }
 }

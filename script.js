@@ -67,152 +67,125 @@ document.addEventListener('DOMContentLoaded', function () {
     // --- PAGE-SPECIFIC INITIALIZERS ---
 
     function initHomepage() {
-        const carousel = document.querySelector('.carousel-container');
-        if (carousel) {
-            const track = carousel.querySelector('.carousel-track');
-            const slides = Array.from(track.children);
-            const nextButton = carousel.querySelector('.next-btn');
-            const prevButton = carousel.querySelector('.prev-btn');
-            const dotsContainer = carousel.querySelector('.carousel-dots');
+        // --- Product Carousel ---
+const carousel = document.querySelector('.carousel-container');
+if (carousel) {
+    const track = carousel.querySelector('.carousel-track');
+    const slides = Array.from(track.children);
+    const nextButton = carousel.querySelector('.next-btn');
+    const prevButton = carousel.querySelector('.prev-btn');
+    const dotsContainer = carousel.querySelector('.carousel-dots');
+    
+    if (slides.length > 0) {
+        let slideWidth = slides[0].getBoundingClientRect().width;
+        let currentIndex = 0;
+        let isDragging = false;
+        let startPos = 0;
+        let currentTranslate = 0;
+        let prevTranslate = 0;
+        let animationID;
+        let velocity = 0;
+        let lastPos = 0;
 
-            let slideWidth = slides[0].getBoundingClientRect().width;
-            let currentIndex = 0;
-            let isDragging = false;
-            let startPos = 0;
-            let currentTranslate = 0;
-            let prevTranslate = 0;
-            let velocity = 0;
-            let lastPos = 0;
-            let animationID;
-            let momentumID;
-            let dots = [];
+        slides.forEach((_, i) => {
+            const dot = document.createElement('button');
+            dot.classList.add('carousel-dot');
+            if (i === 0) dot.classList.add('active');
+            dot.addEventListener('click', () => moveToSlide(i));
+            dotsContainer.appendChild(dot);
+        });
+        const dots = Array.from(dotsContainer.children);
 
-            // === Dots setup ===
-            slides.forEach((_, i) => {
-                const dot = document.createElement('button');
-                dot.classList.add('carousel-dot');
-                if (i === 0) dot.classList.add('active');
-                dot.addEventListener('click', () => moveToSlide(i));
-                dotsContainer.appendChild(dot);
-            });
-            dots = Array.from(dotsContainer.children);
+        const setPositionByIndex = () => {
+            currentTranslate = currentIndex * -slideWidth;
+            prevTranslate = currentTranslate;
+            setSliderPosition();
+        };
 
-            const setSliderPosition = () => {
-                track.style.transform = `translateX(${currentTranslate}px)`;
-            };
+        const setSliderPosition = () => {
+            track.style.transform = `translateX(${currentTranslate}px)`;
+        };
 
-            const updateDots = () => {
-                dots.forEach(dot => dot.classList.remove('active'));
-                dots[currentIndex].classList.add('active');
-            };
+        const updateDots = () => {
+            dots.forEach(dot => dot.classList.remove('active'));
+            dots[currentIndex].classList.add('active');
+        };
 
-            const getPositionX = e => e.type.includes('mouse') ? e.pageX : e.touches[0].clientX;
+        const moveToSlide = (targetIndex) => {
+            track.style.transition = 'transform 0.5s ease-in-out';
+            currentIndex = targetIndex;
+            setPositionByIndex();
+            updateDots();
+        };
 
-            const dragStart = (e) => {
-                isDragging = true;
-                startPos = getPositionX(e);
-                lastPos = startPos;
-                velocity = 0;
-                track.style.transition = 'none';
+        prevButton.addEventListener('click', () => {
+            const newIndex = currentIndex - 1 < 0 ? 0 : currentIndex - 1;
+            moveToSlide(newIndex);
+        });
 
-                cancelAnimationFrame(momentumID); // stop any momentum if user touches again
-                animationID = requestAnimationFrame(animation);
-            };
+        nextButton.addEventListener('click', () => {
+            const newIndex = currentIndex + 1 >= slides.length ? slides.length - 1 : currentIndex + 1;
+            moveToSlide(newIndex);
+        });
 
-            const dragMove = (e) => {
-                if (!isDragging) return;
+        window.addEventListener('resize', () => {
+            slideWidth = slides[0].getBoundingClientRect().width;
+            moveToSlide(currentIndex);
+        });
+
+        // Touch/Drag functionality
+        const getPositionX = e => e.type.includes('mouse') ? e.pageX : e.touches[0].clientX;
+        
+        const dragStart = (e) => {
+            isDragging = true;
+            startPos = getPositionX(e);
+            lastPos = startPos;
+            velocity = 0;
+            track.style.transition = 'none';
+            animationID = requestAnimationFrame(animation);
+        };
+
+        const dragMove = (e) => {
+            if (isDragging) {
                 const currentPosition = getPositionX(e);
                 velocity = currentPosition - lastPos;
                 lastPos = currentPosition;
                 currentTranslate = prevTranslate + currentPosition - startPos;
-            };
-
-            const dragEnd = () => {
-                isDragging = false;
-                cancelAnimationFrame(animationID);
-                prevTranslate = currentTranslate;
-                momentumScroll();
-            };
-
-            function animation() {
-                setSliderPosition();
-                if (isDragging) requestAnimationFrame(animation);
             }
+        };
 
-            function momentumScroll() {
-                velocity *= 0.95; // friction
-                currentTranslate += velocity;
-                setSliderPosition();
+        const dragEnd = () => {
+            isDragging = false;
+            cancelAnimationFrame(animationID);
+            
+            // Momentum scroll
+            currentTranslate += velocity * 5; // Adjust multiplier for more/less fling
+            
+            // Snap to nearest slide
+            currentIndex = Math.round(currentTranslate / -slideWidth);
+            currentIndex = Math.max(0, Math.min(slides.length - 1, currentIndex));
+            
+            moveToSlide(currentIndex);
+        };
+        
+        function animation() {
+            setSliderPosition();
+            if(isDragging) requestAnimationFrame(animation);
+        }
 
-                const maxTranslate = 0;
-                const minTranslate = -((slides.length * slideWidth) - carousel.offsetWidth);
-
-                if (currentTranslate > maxTranslate) {
-                currentTranslate = maxTranslate;
-                velocity = 0;
-                } else if (currentTranslate < minTranslate) {
-                currentTranslate = minTranslate;
-                velocity = 0;
-                }
-
-                prevTranslate = currentTranslate;
-
-                if (Math.abs(velocity) > 0.5) {
-                momentumID = requestAnimationFrame(momentumScroll);
-                } else {
-                snapToNearestSlide();
-                }
-            }
-
-            function snapToNearestSlide() {
-                currentIndex = Math.round(Math.abs(currentTranslate) / slideWidth);
-                currentIndex = Math.max(0, Math.min(slides.length - 1, currentIndex));
-                currentTranslate = -currentIndex * slideWidth;
-                prevTranslate = currentTranslate;
-                track.style.transition = 'transform 0.35s ease-out';
-                setSliderPosition();
-                updateDots();
-            }
-
-            function moveToSlide(index) {
-                currentIndex = index;
-                currentTranslate = -currentIndex * slideWidth;
-                prevTranslate = currentTranslate;
-                track.style.transition = 'transform 0.35s ease-out';
-                setSliderPosition();
-                updateDots();
-            }
-
-            // === Button Events ===
-            prevButton.addEventListener('click', () => {
-                if (currentIndex > 0) moveToSlide(currentIndex - 1);
-            });
-
-            nextButton.addEventListener('click', () => {
-                if (currentIndex < slides.length - 1) moveToSlide(currentIndex + 1);
-            });
-
-            // === Drag Events ===
-            track.addEventListener('mousedown', dragStart);
-            track.addEventListener('touchstart', dragStart);
-            track.addEventListener('mouseup', dragEnd);
-            track.addEventListener('touchend', dragEnd);
-            track.addEventListener('mouseleave', () => { if (isDragging) dragEnd(); });
-            track.addEventListener('mousemove', dragMove);
-            track.addEventListener('touchmove', dragMove);
-
-            // === Resize ===
-            window.addEventListener('resize', () => {
-                slideWidth = slides[0].getBoundingClientRect().width;
-                moveToSlide(currentIndex);
-            });
-
-            // Init position
-            moveToSlide(0);
-            }
-
-
+        track.addEventListener('mousedown', dragStart);
+        track.addEventListener('touchstart', dragStart);
+        track.addEventListener('mouseup', dragEnd);
+        track.addEventListener('touchend', dragEnd);
+        track.addEventListener('mouseleave', () => { if (isDragging) dragEnd(); });
+        track.addEventListener('mousemove', dragMove);
+        track.addEventListener('touchmove', dragMove);
     }
+}
+
+
+
+
 }
 
         const showAllButton = document.getElementById('show-all-products');
@@ -236,7 +209,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 showAllButton.style.display = 'inline-block';
             });
         }
-    }
+    
 
     function initProductPages() {
         const productGrid = document.querySelector('.product-grid');
@@ -585,5 +558,6 @@ document.addEventListener('DOMContentLoaded', function () {
     initCartPage();
     initResultsPage();
     initAccountPage();
-    setPositionByIndex();
+    
+
 });
