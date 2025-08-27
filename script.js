@@ -71,13 +71,8 @@ document.addEventListener('DOMContentLoaded', function () {
         if (carousel) {
             const track = carousel.querySelector('.carousel-track');
             const slides = Array.from(track.children);
-            const nextButton = carousel.querySelector('.next-btn');
-            const prevButton = carousel.querySelector('.prev-btn');
-            const dotsContainer = carousel.querySelector('.carousel-dots');
 
-        if (slides.length > 0) {
             let slideWidth = slides[0].getBoundingClientRect().width;
-            let currentIndex = 0;
             let isDragging = false;
             let startPos = 0;
             let currentTranslate = 0;
@@ -85,94 +80,81 @@ document.addEventListener('DOMContentLoaded', function () {
             let velocity = 0;
             let lastPos = 0;
             let animationID;
-
-            // Build dots
-            slides.forEach((_, i) => {
-            const dot = document.createElement('button');
-            dot.classList.add('carousel-dot');
-            if (i === 0) dot.classList.add('active');
-            dot.addEventListener('click', () => moveToSlide(i));
-            dotsContainer.appendChild(dot);
-            });
-            const dots = Array.from(dotsContainer.children);
-
-            const setPositionByIndex = () => {
-            currentTranslate = currentIndex * -slideWidth;
-            prevTranslate = currentTranslate;
-            setSliderPosition();
-            };
+            let momentumID;
 
             const setSliderPosition = () => {
-            track.style.transform = `translateX(${currentTranslate}px)`;
+                track.style.transform = `translateX(${currentTranslate}px)`;
             };
 
-            const updateDots = () => {
-            dots.forEach(dot => dot.classList.remove('active'));
-            dots[currentIndex].classList.add('active');
-            };
-
-            const moveToSlide = (targetIndex, smooth = true) => {
-            currentIndex = targetIndex;
-            currentTranslate = -currentIndex * slideWidth;
-            prevTranslate = currentTranslate;
-            track.style.transition = smooth ? 'transform 0.35s ease-out' : 'none';
-            setSliderPosition();
-            updateDots();
-            };
-
-            prevButton.addEventListener('click', () => {
-            const newIndex = Math.max(0, currentIndex - 1);
-            moveToSlide(newIndex);
-            });
-
-            nextButton.addEventListener('click', () => {
-            const newIndex = Math.min(slides.length - 1, currentIndex + 1);
-            moveToSlide(newIndex);
-            });
-
-            window.addEventListener('resize', () => {
-            slideWidth = slides[0].getBoundingClientRect().width;
-            moveToSlide(currentIndex, false);
-            });
-
-            // Drag logic
             const getPositionX = e => e.type.includes('mouse') ? e.pageX : e.touches[0].clientX;
 
             const dragStart = (e) => {
-            isDragging = true;
-            startPos = getPositionX(e);
-            lastPos = startPos;
-            velocity = 0;
-            track.style.transition = 'none';
-            animationID = requestAnimationFrame(animation);
+                isDragging = true;
+                startPos = getPositionX(e);
+                lastPos = startPos;
+                velocity = 0;
+                track.style.transition = 'none';
+
+                cancelAnimationFrame(momentumID); // stop any momentum if user touches again
+                animationID = requestAnimationFrame(animation);
             };
 
             const dragMove = (e) => {
-            if (!isDragging) return;
-            const currentPosition = getPositionX(e);
-            velocity = currentPosition - lastPos;
-            lastPos = currentPosition;
-            currentTranslate = prevTranslate + currentPosition - startPos;
+                if (!isDragging) return;
+                const currentPosition = getPositionX(e);
+                velocity = currentPosition - lastPos;
+                lastPos = currentPosition;
+                currentTranslate = prevTranslate + currentPosition - startPos;
             };
 
             const dragEnd = () => {
-            isDragging = false;
-            cancelAnimationFrame(animationID);
+                isDragging = false;
+                cancelAnimationFrame(animationID);
 
-            // momentum effect (inertia)
-            let momentum = velocity * 2; // adjust multiplier for strength
-            let targetTranslate = currentTranslate + momentum;
+                prevTranslate = currentTranslate;
 
-            // find nearest slide
-            let targetIndex = Math.round(targetTranslate / -slideWidth);
-            targetIndex = Math.max(0, Math.min(slides.length - 1, targetIndex));
-
-            moveToSlide(targetIndex, true);
+                // Start inertia scrolling
+                momentumScroll();
             };
 
             function animation() {
-            setSliderPosition();
-            if (isDragging) requestAnimationFrame(animation);
+                setSliderPosition();
+                if (isDragging) requestAnimationFrame(animation);
+            }
+
+            function momentumScroll() {
+                velocity *= 0.95; // friction
+                currentTranslate += velocity;
+                setSliderPosition();
+
+                // boundaries
+                const maxTranslate = 0;
+                const minTranslate = -((slides.length * slideWidth) - carousel.offsetWidth);
+
+                if (currentTranslate > maxTranslate) {
+                currentTranslate = maxTranslate;
+                velocity = 0;
+                } else if (currentTranslate < minTranslate) {
+                currentTranslate = minTranslate;
+                velocity = 0;
+                }
+
+                prevTranslate = currentTranslate;
+
+                if (Math.abs(velocity) > 0.5) {
+                momentumID = requestAnimationFrame(momentumScroll);
+                } else {
+                snapToNearestSlide(); // 👈 snap after inertia ends
+                }
+            }
+
+            function snapToNearestSlide() {
+                let index = Math.round(Math.abs(currentTranslate) / slideWidth);
+                index = Math.max(0, Math.min(slides.length - 1, index));
+                currentTranslate = -index * slideWidth;
+                prevTranslate = currentTranslate;
+                track.style.transition = 'transform 0.35s ease-out';
+                setSliderPosition();
             }
 
             // Events
@@ -183,6 +165,14 @@ document.addEventListener('DOMContentLoaded', function () {
             track.addEventListener('mouseleave', () => { if (isDragging) dragEnd(); });
             track.addEventListener('mousemove', dragMove);
             track.addEventListener('touchmove', dragMove);
+
+            window.addEventListener('resize', () => {
+                slideWidth = slides[0].getBoundingClientRect().width;
+                snapToNearestSlide();
+            });
+            }
+
+
 
     }
 }
