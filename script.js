@@ -68,102 +68,119 @@ document.addEventListener('DOMContentLoaded', function () {
 
     function initHomepage() {
         const carousel = document.querySelector('.carousel-container');
-        if (carousel) {
-            const track = carousel.querySelector('.carousel-track');
-            const slides = Array.from(track.children);
-            const nextButton = carousel.querySelector('.next-btn');
-            const prevButton = carousel.querySelector('.prev-btn');
-            const dotsContainer = carousel.querySelector('.carousel-dots');
-            
-            if (slides.length > 0) {
-                let slideWidth = slides[0].getBoundingClientRect().width;
-                let currentIndex = 0;
-                let isDragging = false;
-                let startPos = 0;
-                let currentTranslate = 0;
-                let prevTranslate = 0;
+if (carousel) {
+    const track = carousel.querySelector('.carousel-track');
+    const slides = Array.from(track.children);
+    const nextButton = carousel.querySelector('.next-btn');
+    const prevButton = carousel.querySelector('.prev-btn');
+    const dotsContainer = carousel.querySelector('.carousel-dots');
+    
+    if (slides.length > 0) {
+        let slideWidth = slides[0].getBoundingClientRect().width;
+        let currentIndex = 0;
+        let isDragging = false;
+        let startPos = 0;
+        let currentTranslate = 0;
+        let prevTranslate = 0;
+        let animationID;
+        let velocity = 0;
+        let lastPos = 0;
 
-                slides.forEach((_, i) => {
-                    const dot = document.createElement('button');
-                    dot.classList.add('carousel-dot');
-                    if (i === 0) dot.classList.add('active');
-                    dot.addEventListener('click', () => moveToSlide(i));
-                    dotsContainer.appendChild(dot);
-                });
-                const dots = Array.from(dotsContainer.children);
+        slides.forEach((_, i) => {
+            const dot = document.createElement('button');
+            dot.classList.add('carousel-dot');
+            if (i === 0) dot.classList.add('active');
+            dot.addEventListener('click', () => moveToSlide(i));
+            dotsContainer.appendChild(dot);
+        });
+        const dots = Array.from(dotsContainer.children);
 
-                const moveToSlide = (targetIndex) => {
-                    track.style.transition = 'transform 0.5s ease-in-out';
-                    const newTransform = -slideWidth * targetIndex;
-                    track.style.transform = 'translateX(' + newTransform + 'px)';
-                    currentIndex = targetIndex;
-                    updateDots(targetIndex);
-                    prevTranslate = newTransform;
-                };
+        const setPositionByIndex = () => {
+            currentTranslate = currentIndex * -slideWidth;
+            prevTranslate = currentTranslate;
+            setSliderPosition();
+        };
 
-                const updateDots = (targetIndex) => {
-                    dots.forEach(dot => dot.classList.remove('active'));
-                    dots[targetIndex].classList.add('active');
-                };
+        const setSliderPosition = () => {
+            track.style.transform = `translateX(${currentTranslate}px)`;
+        };
 
-                prevButton.addEventListener('click', () => {
-                    const newIndex = currentIndex - 1 < 0 ? slides.length - 1 : currentIndex - 1;
-                    moveToSlide(newIndex);
-                });
+        const updateDots = () => {
+            dots.forEach(dot => dot.classList.remove('active'));
+            dots[currentIndex].classList.add('active');
+        };
 
-                nextButton.addEventListener('click', () => {
-                    const newIndex = currentIndex + 1 >= slides.length ? 0 : currentIndex + 1;
-                    moveToSlide(newIndex);
-                });
+        const moveToSlide = (targetIndex) => {
+            track.style.transition = 'transform 0.5s ease-in-out';
+            currentIndex = targetIndex;
+            setPositionByIndex();
+            updateDots();
+        };
 
-                window.addEventListener('resize', () => {
-                    slideWidth = slides[0].getBoundingClientRect().width;
-                    moveToSlide(currentIndex);
-                });
+        prevButton.addEventListener('click', () => {
+            const newIndex = currentIndex - 1 < 0 ? 0 : currentIndex - 1;
+            moveToSlide(newIndex);
+        });
 
-                // Touch/Drag functionality
-                const getPositionX = e => e.type.includes('mouse') ? e.pageX : e.touches[0].clientX;
-                
-                const dragStart = (e) => {
-                    isDragging = true;
-                    startPos = getPositionX(e);
-                    lastPos = startPos;
-                    velocity = 0;
-                    track.style.transition = 'none';
-                };
+        nextButton.addEventListener('click', () => {
+            const newIndex = currentIndex + 1 >= slides.length ? slides.length - 1 : currentIndex + 1;
+            moveToSlide(newIndex);
+        });
 
-                const dragMove = (e) => {
-                    if (isDragging) {
-                        const currentPosition = getPositionX(e);
-                        velocity = currentPosition - lastPos;
-                        lastPos = currentPosition;
-                        currentTranslate = prevTranslate + currentPosition - startPos;
-                        setSliderPosition(); // Update position in real-time
-                    }
-                };
+        window.addEventListener('resize', () => {
+            slideWidth = slides[0].getBoundingClientRect().width;
+            moveToSlide(currentIndex);
+        });
 
-                const dragEnd = () => {
-                    isDragging = false;
-                    
-                    // Momentum scroll
-                    currentTranslate += velocity * 5; // Adjust multiplier for more/less fling
-                    
-                    // Snap to nearest slide
-                    currentIndex = Math.round(currentTranslate / -slideWidth);
-                    currentIndex = Math.max(0, Math.min(slides.length - 1, currentIndex));
-                    
-                    moveToSlide(currentIndex);
-                };
+        // Touch/Drag functionality
+        const getPositionX = e => e.type.includes('mouse') ? e.pageX : e.touches[0].clientX;
+        
+        const dragStart = (e) => {
+            isDragging = true;
+            startPos = getPositionX(e);
+            lastPos = startPos;
+            velocity = 0;
+            track.style.transition = 'none';
+            animationID = requestAnimationFrame(animation);
+        };
 
-                track.addEventListener('mousedown', dragStart);
-                track.addEventListener('touchstart', dragStart);
-                track.addEventListener('mouseup', dragEnd);
-                track.addEventListener('touchend', dragEnd);
-                track.addEventListener('mouseleave', () => { if (isDragging) dragEnd(); });
-                track.addEventListener('mousemove', dragMove);
-                track.addEventListener('touchmove', dragMove);
+        const dragMove = (e) => {
+            if (isDragging) {
+                const currentPosition = getPositionX(e);
+                velocity = currentPosition - lastPos;
+                lastPos = currentPosition;
+                currentTranslate = prevTranslate + currentPosition - startPos;
             }
+        };
+
+        const dragEnd = () => {
+            isDragging = false;
+            cancelAnimationFrame(animationID);
+            
+            // Momentum scroll
+            currentTranslate += velocity * 5; // Adjust multiplier for more/less fling
+            
+            // Snap to nearest slide
+            currentIndex = Math.round(currentTranslate / -slideWidth);
+            currentIndex = Math.max(0, Math.min(slides.length - 1, currentIndex));
+            
+            moveToSlide(currentIndex);
+        };
+        
+        function animation() {
+            setSliderPosition();
+            if(isDragging) requestAnimationFrame(animation);
         }
+
+        track.addEventListener('mousedown', dragStart);
+        track.addEventListener('touchstart', dragStart);
+        track.addEventListener('mouseup', dragEnd);
+        track.addEventListener('touchend', dragEnd);
+        track.addEventListener('mouseleave', () => { if (isDragging) dragEnd(); });
+        track.addEventListener('mousemove', dragMove);
+        track.addEventListener('touchmove', dragMove);
+    }
+}
 
         const showAllButton = document.getElementById('show-all-products');
         const collapseButton = document.getElementById('collapse-products');
