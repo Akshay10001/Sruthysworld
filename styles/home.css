@@ -70,7 +70,7 @@
     width: 100%;
     overflow: hidden;
     position: relative;
-    cursor: grab; 
+    cursor: grab; /* Indicate draggable */
 }
 .carousel-track-container {
     overflow: hidden;

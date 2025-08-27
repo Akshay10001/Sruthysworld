@@ -122,31 +122,46 @@ document.addEventListener('DOMContentLoaded', function () {
                 });
 
                 // Touch/Drag functionality
+                const getPositionX = e => e.type.includes('mouse') ? e.pageX : e.touches[0].clientX;
+                
                 const dragStart = (e) => {
                     isDragging = true;
-                    startPos = e.type.includes('mouse') ? e.pageX : e.touches[0].clientX;
+                    startPos = getPositionX(e);
+                    lastPos = startPos;
+                    velocity = 0;
                     track.style.transition = 'none';
+                    animationID = requestAnimationFrame(animation);
                 };
 
                 const dragMove = (e) => {
                     if (isDragging) {
-                        const currentPosition = e.type.includes('mouse') ? e.pageX : e.touches[0].clientX;
+                        const currentPosition = getPositionX(e);
+                        velocity = currentPosition - lastPos;
+                        lastPos = currentPosition;
                         currentTranslate = prevTranslate + currentPosition - startPos;
-                        track.style.transform = `translateX(${currentTranslate}px)`;
                     }
                 };
 
                 const dragEnd = () => {
                     isDragging = false;
+                    cancelAnimationFrame(animationID);
+                    
                     const movedBy = currentTranslate - prevTranslate;
-                    if (movedBy < -100 && currentIndex < slides.length - 1) {
-                        currentIndex++;
-                    }
-                    if (movedBy > 100 && currentIndex > 0) {
-                        currentIndex--;
-                    }
+                    
+                    // Momentum scroll
+                    currentTranslate += velocity * 5; // Adjust multiplier for more/less fling
+                    
+                    // Snap to nearest slide
+                    currentIndex = Math.round(currentTranslate / -slideWidth);
+                    currentIndex = Math.max(0, Math.min(slides.length - 1, currentIndex));
+                    
                     moveToSlide(currentIndex);
                 };
+                
+                function animation() {
+                    setSliderPosition();
+                    if(isDragging) requestAnimationFrame(animation);
+                }
 
                 track.addEventListener('mousedown', dragStart);
                 track.addEventListener('touchstart', dragStart);
