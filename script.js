@@ -130,7 +130,6 @@ document.addEventListener('DOMContentLoaded', function () {
                     lastPos = startPos;
                     velocity = 0;
                     track.style.transition = 'none';
-                    animationID = requestAnimationFrame(animation);
                 };
 
                 const dragMove = (e) => {
@@ -139,14 +138,12 @@ document.addEventListener('DOMContentLoaded', function () {
                         velocity = currentPosition - lastPos;
                         lastPos = currentPosition;
                         currentTranslate = prevTranslate + currentPosition - startPos;
+                        setSliderPosition(); // Update position in real-time
                     }
                 };
 
                 const dragEnd = () => {
                     isDragging = false;
-                    cancelAnimationFrame(animationID);
-                    
-                    const movedBy = currentTranslate - prevTranslate;
                     
                     // Momentum scroll
                     currentTranslate += velocity * 5; // Adjust multiplier for more/less fling
@@ -157,11 +154,6 @@ document.addEventListener('DOMContentLoaded', function () {
                     
                     moveToSlide(currentIndex);
                 };
-                
-                function animation() {
-                    setSliderPosition();
-                    if(isDragging) requestAnimationFrame(animation);
-                }
 
                 track.addEventListener('mousedown', dragStart);
                 track.addEventListener('touchstart', dragStart);
