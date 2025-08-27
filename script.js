@@ -71,8 +71,12 @@ document.addEventListener('DOMContentLoaded', function () {
         if (carousel) {
             const track = carousel.querySelector('.carousel-track');
             const slides = Array.from(track.children);
+            const nextButton = carousel.querySelector('.next-btn');
+            const prevButton = carousel.querySelector('.prev-btn');
+            const dotsContainer = carousel.querySelector('.carousel-dots');
 
             let slideWidth = slides[0].getBoundingClientRect().width;
+            let currentIndex = 0;
             let isDragging = false;
             let startPos = 0;
             let currentTranslate = 0;
@@ -81,9 +85,25 @@ document.addEventListener('DOMContentLoaded', function () {
             let lastPos = 0;
             let animationID;
             let momentumID;
+            let dots = [];
+
+            // === Dots setup ===
+            slides.forEach((_, i) => {
+                const dot = document.createElement('button');
+                dot.classList.add('carousel-dot');
+                if (i === 0) dot.classList.add('active');
+                dot.addEventListener('click', () => moveToSlide(i));
+                dotsContainer.appendChild(dot);
+            });
+            dots = Array.from(dotsContainer.children);
 
             const setSliderPosition = () => {
                 track.style.transform = `translateX(${currentTranslate}px)`;
+            };
+
+            const updateDots = () => {
+                dots.forEach(dot => dot.classList.remove('active'));
+                dots[currentIndex].classList.add('active');
             };
 
             const getPositionX = e => e.type.includes('mouse') ? e.pageX : e.touches[0].clientX;
@@ -110,10 +130,7 @@ document.addEventListener('DOMContentLoaded', function () {
             const dragEnd = () => {
                 isDragging = false;
                 cancelAnimationFrame(animationID);
-
                 prevTranslate = currentTranslate;
-
-                // Start inertia scrolling
                 momentumScroll();
             };
 
@@ -127,7 +144,6 @@ document.addEventListener('DOMContentLoaded', function () {
                 currentTranslate += velocity;
                 setSliderPosition();
 
-                // boundaries
                 const maxTranslate = 0;
                 const minTranslate = -((slides.length * slideWidth) - carousel.offsetWidth);
 
@@ -144,20 +160,39 @@ document.addEventListener('DOMContentLoaded', function () {
                 if (Math.abs(velocity) > 0.5) {
                 momentumID = requestAnimationFrame(momentumScroll);
                 } else {
-                snapToNearestSlide(); // 👈 snap after inertia ends
+                snapToNearestSlide();
                 }
             }
 
             function snapToNearestSlide() {
-                let index = Math.round(Math.abs(currentTranslate) / slideWidth);
-                index = Math.max(0, Math.min(slides.length - 1, index));
-                currentTranslate = -index * slideWidth;
+                currentIndex = Math.round(Math.abs(currentTranslate) / slideWidth);
+                currentIndex = Math.max(0, Math.min(slides.length - 1, currentIndex));
+                currentTranslate = -currentIndex * slideWidth;
                 prevTranslate = currentTranslate;
                 track.style.transition = 'transform 0.35s ease-out';
                 setSliderPosition();
+                updateDots();
             }
 
-            // Events
+            function moveToSlide(index) {
+                currentIndex = index;
+                currentTranslate = -currentIndex * slideWidth;
+                prevTranslate = currentTranslate;
+                track.style.transition = 'transform 0.35s ease-out';
+                setSliderPosition();
+                updateDots();
+            }
+
+            // === Button Events ===
+            prevButton.addEventListener('click', () => {
+                if (currentIndex > 0) moveToSlide(currentIndex - 1);
+            });
+
+            nextButton.addEventListener('click', () => {
+                if (currentIndex < slides.length - 1) moveToSlide(currentIndex + 1);
+            });
+
+            // === Drag Events ===
             track.addEventListener('mousedown', dragStart);
             track.addEventListener('touchstart', dragStart);
             track.addEventListener('mouseup', dragEnd);
@@ -166,12 +201,15 @@ document.addEventListener('DOMContentLoaded', function () {
             track.addEventListener('mousemove', dragMove);
             track.addEventListener('touchmove', dragMove);
 
+            // === Resize ===
             window.addEventListener('resize', () => {
                 slideWidth = slides[0].getBoundingClientRect().width;
-                snapToNearestSlide();
+                moveToSlide(currentIndex);
             });
-            }
 
+            // Init position
+            moveToSlide(0);
+            }
 
 
     }
