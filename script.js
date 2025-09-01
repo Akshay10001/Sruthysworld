@@ -363,7 +363,7 @@ if (carousel) {
             let recentlyViewed = JSON.parse(localStorage.getItem('sruthysRecentlyViewed')) || [];
             recentlyViewed = recentlyViewed.filter(item => item.id !== currentProduct.id);
             recentlyViewed.unshift(currentProduct);
-            if (recentlyViewed.length > 5) recentlyViewed.pop();
+            if (recentlyViewed.length > 4) recentlyViewed.pop();
             localStorage.setItem('sruthysRecentlyViewed', JSON.stringify(recentlyViewed));
 
             renderRecentlyViewed(currentProduct.id);
