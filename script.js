@@ -68,119 +68,84 @@ document.addEventListener('DOMContentLoaded', function () {
 
     function initHomepage() {
         // --- Product Carousel ---
+// --- Professional Product Carousel ---
 const carousel = document.querySelector('.carousel-container');
 if (carousel) {
     const track = carousel.querySelector('.carousel-track');
     const slides = Array.from(track.children);
     const nextButton = carousel.querySelector('.next-btn');
     const prevButton = carousel.querySelector('.prev-btn');
-    const dotsContainer = carousel.querySelector('.carousel-dots');
+
+    if (slides.length === 0) return;
+
+    let currentIndex = 0;
+    let visibleSlides = 1;
+
+    const setupCarousel = () => {
+        const slideWidth = slides[0].getBoundingClientRect().width;
+        visibleSlides = Math.round(track.parentElement.getBoundingClientRect().width / slideWidth);
+        track.style.transition = 'transform 0.6s cubic-bezier(0.25, 0.8, 0.25, 1)';
+        moveToGroup(currentIndex);
+    };
+
+    const moveToGroup = (index) => {
+        const maxIndex = slides.length - visibleSlides;
+        currentIndex = Math.max(0, Math.min(index, maxIndex));
+        
+        const newTransform = -currentIndex * slides[0].getBoundingClientRect().width;
+        track.style.transform = `translateX(${newTransform}px)`;
+    };
+
+    nextButton.addEventListener('click', () => {
+        moveToGroup(currentIndex + visibleSlides);
+    });
+
+    prevButton.addEventListener('click', () => {
+        moveToGroup(currentIndex - visibleSlides);
+    });
+
+    window.addEventListener('resize', setupCarousel);
+    setupCarousel();
+
+    let isDragging = false, startPos = 0, currentTranslate = 0, prevTranslate = 0;
+    const getPositionX = e => e.type.includes('mouse') ? e.pageX : e.touches[0].clientX;
     
-    if (slides.length > 0) {
-        let slideWidth = slides[0].getBoundingClientRect().width;
-        let currentIndex = 0;
-        let isDragging = false;
-        let startPos = 0;
-        let currentTranslate = 0;
-        let prevTranslate = 0;
-        let animationID;
-        let velocity = 0;
-        let lastPos = 0;
+    const dragStart = (e) => {
+        isDragging = true;
+        startPos = getPositionX(e);
+        track.style.transition = 'none';
+        prevTranslate = -currentIndex * slides[0].getBoundingClientRect().width;
+    };
 
-        slides.forEach((_, i) => {
-            const dot = document.createElement('button');
-            dot.classList.add('carousel-dot');
-            if (i === 0) dot.classList.add('active');
-            dot.addEventListener('click', () => moveToSlide(i));
-            dotsContainer.appendChild(dot);
-        });
-        const dots = Array.from(dotsContainer.children);
-
-        const setPositionByIndex = () => {
-            currentTranslate = currentIndex * -slideWidth;
-            prevTranslate = currentTranslate;
-            setSliderPosition();
-        };
-
-        const setSliderPosition = () => {
+    const dragMove = (e) => {
+        if (isDragging) {
+            const currentPosition = getPositionX(e);
+            currentTranslate = prevTranslate + currentPosition - startPos;
             track.style.transform = `translateX(${currentTranslate}px)`;
-        };
-
-        const updateDots = () => {
-            dots.forEach(dot => dot.classList.remove('active'));
-            dots[currentIndex].classList.add('active');
-        };
-
-        const moveToSlide = (targetIndex) => {
-            track.style.transition = 'transform 0.5s ease-in-out';
-            currentIndex = targetIndex;
-            setPositionByIndex();
-            updateDots();
-        };
-
-        prevButton.addEventListener('click', () => {
-            const newIndex = currentIndex - 1 < 0 ? 0 : currentIndex - 1;
-            moveToSlide(newIndex);
-        });
-
-        nextButton.addEventListener('click', () => {
-            const newIndex = currentIndex + 1 >= slides.length ? slides.length - 1 : currentIndex + 1;
-            moveToSlide(newIndex);
-        });
-
-        window.addEventListener('resize', () => {
-            slideWidth = slides[0].getBoundingClientRect().width;
-            moveToSlide(currentIndex);
-        });
-
-        // Touch/Drag functionality
-        const getPositionX = e => e.type.includes('mouse') ? e.pageX : e.touches[0].clientX;
-        
-        const dragStart = (e) => {
-            isDragging = true;
-            startPos = getPositionX(e);
-            lastPos = startPos;
-            velocity = 0;
-            track.style.transition = 'none';
-            animationID = requestAnimationFrame(animation);
-        };
-
-        const dragMove = (e) => {
-            if (isDragging) {
-                const currentPosition = getPositionX(e);
-                velocity = currentPosition - lastPos;
-                lastPos = currentPosition;
-                currentTranslate = prevTranslate + currentPosition - startPos;
-            }
-        };
-
-        const dragEnd = () => {
-            isDragging = false;
-            cancelAnimationFrame(animationID);
-            
-            // Momentum scroll
-            currentTranslate += velocity * 5; // Adjust multiplier for more/less fling
-            
-            // Snap to nearest slide
-            currentIndex = Math.round(currentTranslate / -slideWidth);
-            currentIndex = Math.max(0, Math.min(slides.length - 1, currentIndex));
-            
-            moveToSlide(currentIndex);
-        };
-        
-        function animation() {
-            setSliderPosition();
-            if(isDragging) requestAnimationFrame(animation);
         }
+    };
+    
+    const dragEnd = () => {
+        isDragging = false;
+        track.style.transition = 'transform 0.6s cubic-bezier(0.25, 0.8, 0.25, 1)';
+        const movedBy = currentTranslate - prevTranslate;
 
-        track.addEventListener('mousedown', dragStart);
-        track.addEventListener('touchstart', dragStart);
-        track.addEventListener('mouseup', dragEnd);
-        track.addEventListener('touchend', dragEnd);
-        track.addEventListener('mouseleave', () => { if (isDragging) dragEnd(); });
-        track.addEventListener('mousemove', dragMove);
-        track.addEventListener('touchmove', dragMove);
-    }
+        if (movedBy < -50) {
+            moveToGroup(currentIndex + visibleSlides);
+        } else if (movedBy > 50) {
+            moveToGroup(currentIndex - visibleSlides);
+        } else {
+            moveToGroup(currentIndex);
+        }
+    };
+
+    track.addEventListener('mousedown', dragStart);
+    track.addEventListener('touchstart', dragStart, { passive: true });
+    track.addEventListener('mouseup', dragEnd);
+    track.addEventListener('touchend', dragEnd);
+    track.addEventListener('mouseleave', () => { if (isDragging) dragEnd(); });
+    track.addEventListener('mousemove', dragMove);
+    track.addEventListener('touchmove', dragMove, { passive: true });
 }
 
 }

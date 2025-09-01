@@ -70,16 +70,17 @@
 }
 .carousel-container {
     width: 100%;
-    overflow: hidden;
     position: relative;
-    cursor: grab; /* Indicate draggable */
+    padding: 0 40px; /* Add space on the sides for the buttons on desktop */
 }
 .carousel-track-container {
+    width: 100%;
     overflow: hidden;
+    cursor: grab;
 }
 .carousel-track {
     display: flex;
-    transition: transform 0.5s ease-in-out;
+    /* The transition is now handled by JS for better control */
 }
 .carousel-slide {
     min-width: 100%;
@@ -93,54 +94,50 @@
 }
 @media (min-width: 1024px) {
     .carousel-slide {
-        min-width: 33.33%;
+        min-width: 33.333%;
     }
 }
-.carousel-nav {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding-top: 1.5rem;
-    gap: 1rem;
-}
 .carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
     background: #fff;
     border: 1px solid #EADFCF;
     border-radius: 50%;
-    width: 40px;
-    height: 40px;
+    width: 44px;
+    height: 44px;
     cursor: pointer;
-    display: flex;
+    display: none; /* Hidden by default, shown on larger screens */
     align-items: center;
     justify-content: center;
     color: #634832;
     transition: all 0.2s ease;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
+
+@media (min-width: 768px) {
+    .carousel-btn {
+        display: flex; /* Show buttons on tablet and up */
+    }
+}
+
+.carousel-btn.prev-btn {
+    left: 0;
+}
+
+.carousel-btn.next-btn {
+    right: 0;
+}
+
 .carousel-btn:hover {
     background: #634832;
     color: #fff;
 }
 .carousel-btn svg {
-    width: 20px;
-    height: 20px;
+    width: 24px;
+    height: 24px;
 }
-.carousel-dots {
-    display: flex;
-    gap: 10px;
-}
-.carousel-dot {
-    height: 10px;
-    width: 10px;
-    border-radius: 50%;
-    background-color: #EADFCF;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    border: none;
-}
-.carousel-dot.active {
-    background-color: #634832;
-}
-
 
 /* --- Product Filter Section --- */
 .product-section {
