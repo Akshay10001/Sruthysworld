@@ -327,7 +327,6 @@ a.product-card {
     border-radius: 0.5rem;
     overflow: hidden;
     box-shadow: none;
-    border: none;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     display: block; /* Reverted from flex */
 }
