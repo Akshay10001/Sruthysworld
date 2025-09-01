@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sruthy's World - Natural Herbal Lifestyle</title>
     <link rel="stylesheet" href="styles/style.css">
-    <link rel="stylesheet" href="styles/standard-product-page.css">
     <link rel="stylesheet" href="styles/product-page.css">
+    <link rel="stylesheet" href="styles/oil-product-page.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
@@ -37,17 +37,34 @@
     <main class="container page-header">
         <div class="product-detail-layout">
             <div class="product-image-gallery">
-                <img src="images/product-images/kajal.JPG" alt="kajal" class="main-image" id="main-product-image">
+                <img src="images/product-images/neelayamari.png" alt="Karimjeerakam Oil" class="main-image" id="main-product-image">
                 <div class="product-thumbnails">
-                    <!--<img src="images/product-images/antrihairfallcombo.png" alt="antrihairfallcombo" class="thumbnail-image active"> -->
-                    <!-- Add more thumbnails if available -->
+                    <!-- <img src="images/product-images/onionoil1.JPG" alt="Karimjeerakam Oil" class="thumbnail-image active" >
+                    <img src="images/product-images/onionoil2.JPG" alt="Karimjeerakam Oil" class="thumbnail-image active"> -->
                 </div>
             </div>
             <div class="product-info">
-                <h1>Home Made Kajal</h1>
-                <p class="price" id="product-price">₹500</p>
-                <p class="description">This herbal kajal glides on softly and smoothly, giving your eyes a rich, deep black finish with its natural dark pigments. Crafted from pure, natural ingredients, it is completely free from harmful chemicals and toxins such as parabens, lead, and phthalates. Enriched with soothing and cooling elements, it not only enhances your eyes with the purest black shade but also cares for their health and comfort.</p>
-                
+                <h1>NEELAYAMARI (INDIGO) OIL</h1>
+                <p class="price" id="product-price">₹250</p>
+                <p class="description">Indigo Hair Oil naturally darkens hair while nourishing the scalp and strengthening roots. Enriched with herbal goodness, it helps reduce hair fall, prevents premature greying, and promotes healthy, lustrous hair.</p>                
+                <div class="size-selector">
+                    <p>Size:</p>
+                    <div class="size-options">
+                        <label class="size-option">
+                            <input type="radio" name="size" value="100ml" data-price="250" checked>
+                            <span class="size-label">100ml</span>
+                        </label>
+                        <label class="size-option">
+                            <input type="radio" name="size" value="200ml" data-price="500">
+                            <span class="size-label">200ml</span>
+                        </label>
+                        <label class="size-option">
+                            <input type="radio" name="size" value="500ml" data-price="1250">
+                            <span class="size-label">500ml</span>
+                        </label>
+                    </div>
+                </div>
+
                 <div class="quantity-selector">
                     <button class="quantity-btn minus-btn" type="button">-</button>
                     <input type="number" class="quantity-input" value="1" min="1">
@@ -77,16 +94,23 @@
                 <div>
                     <h3>Key Ingredients</h3>
                     <ul>
+                        <li>Bringa Raj</li>
+                        <li>Purple Fleabane (പൂവംകുറുന്തൽ)</li>
+                        <li>Neem Leaves</li>
                         <li>Aloevera</li>
-                        <li>Poovamkurunnila</li>
+                        <li>Hibiscus Flower</li>
+                        <li>Coconut Oil</li>
                         <li>Brahmi</li>
-                        <li>Pure castor oil</li>
-                        <li>Home made ghee</li>
+                        <li>Indian Gooseberry</li>
+                        <li>Curry Leaves</li>
+                        <li>Indigo (നീലാമരി)</li>
+                        <li>Indian Pennywort (മുതിൽ / കൊടുങ്ങൽ)</li>
+                        <li>Tick Clover (തിരുതാളി)</li>
                     </ul>
                 </div>
                 <div>
                     <h3>How to Use</h3>
-                    <p>Apply a small amount to the affected area as needed. For external use only.</p>
+                    <p>Take a small quantity of the oil, apply it on the scalp, and massage gently. After about 10 minutes, wash it off using a mild herbal shampoo or a traditional hair wash (Thali), preferably once a week. For better results, the oil can be applied four to five times a week. Along with this, include sprouts and leafy vegetables in your diet at least three days a week. Sound sleep and a balanced diet also play an important role in promoting faster hair growth within a month. This product is suitable for all age groups and is meant for external use only.</p>
                 </div>
             </div>
         </div>
@@ -95,10 +119,10 @@
             <div class="section-header">
                 <h2 class="section-title">Related Products</h2>
             </div>
-            <div class="grid-container grid-container-cols-3">
-                <a href="Kumkumam.html" class="product-card" data-category="skincare"><img src="images/product-images/kumkumam1.png" alt="Kummkumam" class="product-card-image"><div class="product-card-content"><h3 class="product-card-title">Kumkumam</h3><p class="product-card-price">₹210</p></div></a>
-                <a href="hairwash-powder.html" class="product-card" data-category="haircare"><img src="images/product-images/hairwashpowder1.JPG" alt="hairwash-powder" class="product-card-image"><div class="product-card-content"><h3 class="product-card-title">Hair Wash Powder</h3><p class="product-card-price">₹200</p></div></a>
-                <a href="lip-balm.html" class="product-card" data-category="skincare"><img src="images/product-images/orangeroselipbalm2.png" alt="Lipbalm" class="product-card-image"><div class="product-card-content"><h3 class="product-card-title">Orange Rose Lip Balm</h3><p class="product-card-price">₹200</p></div></a>
+            <div class="grid-container grid-container-cols-3" >
+                <a href="coconutoil.html" class="product-card" data-category="haircare"><img src="images/product-images/coconutoil.JPG" alt="coconut oil" class="product-card-image"><div class="product-card-content"><h3 class="product-card-title">Home Made Pure Virgin Coconut Oil</h3><p class="product-card-price">₹1000</p></div></a>
+                <a href="onion-oil.html" class="product-card" data-category="haircare"><img src="images/product-images/onion-oil1.JPG" alt="Onion Oil" class="product-card-image"><div class="product-card-content"><h3 class="product-card-title"Onion Curry Leaves Oil</h3><p class="product-card-price">₹250-₹1250</p></div></a>
+                <a href="karimjeerakam-oil.html" class="product-card" data-category="haircare"><img src="images/product-images/karinjeerakamoil1.JPG" alt="Karimjeerakam Oil" class="product-card-image"><div class="product-card-content"><h3 class="product-card-title">Karimjeerakam Oil</h3><p class="product-card-price">₹250-₹1250</p></div></a>
             </div>
         </section>
         
@@ -138,7 +162,7 @@
     </div>
 
     <!-- Footer -->
-     <footer class="footer">
+    <footer class="footer">
     <div class="container">
         <div class="footer-grid">
             <div class="footer-brand">

@@ -183,9 +183,6 @@ if (carousel) {
     }
 }
 
-
-
-
 }
 
         const showAllButton = document.getElementById('show-all-products');
@@ -234,6 +231,7 @@ if (carousel) {
     function initProductDetailPage() {
         const productInfo = document.querySelector('.product-info');
         if (!productInfo) return; // Exit if not a product detail page
+        handleRecentlyViewed(productInfo);
 
         // Add to Cart Logic
         const addToCartButton = productInfo.querySelector('.add-to-cart-btn');
@@ -348,6 +346,61 @@ if (carousel) {
             });
         }
     }
+
+    // ... after the initProductDetailPage() function ...
+
+    // --- RECENTLY VIEWED LOGIC ---
+    function handleRecentlyViewed(productInfo) {
+        try {
+            const currentProduct = {
+                id: productInfo.querySelector('h1').textContent,
+                name: productInfo.querySelector('h1').textContent,
+                price: document.getElementById('product-price').textContent,
+                image: document.getElementById('main-product-image').src,
+                url: window.location.pathname.split('/').pop()
+            };
+
+            let recentlyViewed = JSON.parse(localStorage.getItem('sruthysRecentlyViewed')) || [];
+            recentlyViewed = recentlyViewed.filter(item => item.id !== currentProduct.id);
+            recentlyViewed.unshift(currentProduct);
+            if (recentlyViewed.length > 5) recentlyViewed.pop();
+            localStorage.setItem('sruthysRecentlyViewed', JSON.stringify(recentlyViewed));
+
+            renderRecentlyViewed(currentProduct.id);
+        } catch (error) {
+            console.error("Error handling recently viewed items:", error);
+        }
+    }
+
+    function renderRecentlyViewed(currentProductId) {
+        const grid = document.getElementById('recently-viewed-grid');
+        if (!grid) return;
+
+        try {
+            const recentlyViewed = JSON.parse(localStorage.getItem('sruthysRecentlyViewed')) || [];
+            const itemsToDisplay = recentlyViewed.filter(item => item.id !== currentProductId);
+
+            if (itemsToDisplay.length === 0) {
+                grid.innerHTML = '<p style="text-align: center; grid-column: 1 / -1;">You haven\'t viewed any other products yet.</p>';
+                return;
+            }
+
+            grid.innerHTML = itemsToDisplay.map(item => `
+                <a href="${item.url}" class="product-card">
+                    <img src="${item.image}" alt="${item.name}" class="product-card-image">
+                    <div class="product-card-content">
+                        <h3 class="product-card-title">${item.name}</h3>
+                        <p class="product-card-price">${item.price}</p>
+                    </div>
+                </a>
+            `).join('');
+        } catch (error) {
+            console.error("Error rendering recently viewed items:", error);
+            grid.innerHTML = '<p style="text-align: center; grid-column: 1 / -1;">Could not load recently viewed items.</p>';
+        }
+    }
+
+
 
     function initCartPage() {
         const cartContainer = document.getElementById('cart-container');
