@@ -9,6 +9,7 @@
     padding-left: 0; 
     padding-right: 0; 
     margin-bottom: 2rem;
+    padding-top: 3rem;
 }
 @media (min-width: 768px) {
     .welcome-section {
