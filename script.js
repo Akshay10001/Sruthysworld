@@ -149,14 +149,16 @@ document.addEventListener('DOMContentLoaded', function () {
         function goToSlide(index) {
             currentIndex = Math.max(0, Math.min(index, maxIndex));
             const translateX = -currentIndex * slideWidth;
-            
             track.classList.add('smooth-transition');
             track.style.transform = `translateX(${translateX}%)`;
-            
             updateDots();
             updateButtonStates();
-            
             prevTranslate = translateX;
+            
+            // Remove transition class after animation completes for better touch responsiveness
+            setTimeout(() => {
+                track.classList.remove('smooth-transition');
+            }, 250);
         }
         
         // Update button states
@@ -201,11 +203,9 @@ document.addEventListener('DOMContentLoaded', function () {
         
         function handleDragMove(e) {
             if (!isDragging) return;
-            
             const currentX = e.type.includes('mouse') ? e.pageX : e.touches[0].clientX;
             const diff = currentX - startX;
             const translatePercent = (diff / container.offsetWidth) * 100;
-            
             currentTranslate = prevTranslate + translatePercent;
             
             // Add resistance at boundaries
@@ -216,7 +216,10 @@ document.addEventListener('DOMContentLoaded', function () {
                 currentTranslate = -maxIndex * slideWidth + overflow * 0.3;
             }
             
-            track.style.transform = `translateX(${currentTranslate}%)`;
+            // Use requestAnimationFrame for smoother touch interactions
+            requestAnimationFrame(() => {
+                track.style.transform = `translateX(${currentTranslate}%)`;
+            });
         }
         
         function handleDragEnd(e) {
