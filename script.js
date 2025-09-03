@@ -82,7 +82,6 @@ document.addEventListener('DOMContentLoaded', function () {
         let slidesPerView = 1;
         let slideWidth = 0;
         let maxIndex = 0;
-        let autoPlayInterval = null;
         let isDragging = false;
         let startX = 0;
         let currentTranslate = 0;
@@ -130,7 +129,6 @@ document.addEventListener('DOMContentLoaded', function () {
                 
                 dot.addEventListener('click', () => {
                     goToSlide(i);
-                    resetAutoPlay();
                 });
                 
                 dotsContainer.appendChild(dot);
@@ -145,12 +143,13 @@ document.addEventListener('DOMContentLoaded', function () {
             });
         }
         
-        // Go to specific slide
+        // Go to specific slide with smooth animation
         function goToSlide(index) {
             currentIndex = Math.max(0, Math.min(index, maxIndex));
             const translateX = -currentIndex * slideWidth;
             
-            track.classList.add('smooth-transition');
+            // Apply smooth transition with improved timing
+            track.style.transition = 'transform 0.8s cubic-bezier(0.25, 0.1, 0.25, 1)';
             track.style.transform = `translateX(${translateX}%)`;
             
             updateDots();
@@ -172,36 +171,29 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         }
         
-        // Navigation
+        // Navigation functions
         function goToPrevious() {
             if (currentIndex > 0) {
                 goToSlide(currentIndex - 1);
             }
         }
         
-        // Smooth loop transition from last to first slide
         function goToNext() {
             if (currentIndex < maxIndex) {
                 goToSlide(currentIndex + 1);
             } else {
-                // Smooth transition to first slide
-                currentIndex = 0;
-                track.classList.add('smooth-transition');
-                track.style.transform = `translateX(0%)`;
-                updateDots();
-                updateButtonStates();
-                prevTranslate = 0;
+                // Smooth loop back to beginning
+                goToSlide(0);
             }
         }
         
-        // Touch/Mouse drag support
+        // Touch/Mouse drag support with improved smoothness
         function handleDragStart(e) {
             isDragging = true;
             container.classList.add('dragging');
-            track.classList.remove('smooth-transition');
+            track.style.transition = 'none'; // Remove transition during drag
             
             startX = e.type.includes('mouse') ? e.pageX : e.touches[0].clientX;
-            
             e.preventDefault();
         }
         
@@ -232,35 +224,14 @@ document.addEventListener('DOMContentLoaded', function () {
             container.classList.remove('dragging');
             
             const moved = currentTranslate - prevTranslate;
-            const threshold = slideWidth * 0.2;
+            const threshold = slideWidth * 0.15; // More sensitive threshold
             
             if (moved < -threshold && currentIndex < maxIndex) {
                 goToSlide(currentIndex + 1);
             } else if (moved > threshold && currentIndex > 0) {
                 goToSlide(currentIndex - 1);
             } else {
-                goToSlide(currentIndex);
-            }
-            
-            resetAutoPlay();
-        }
-        
-        // Auto-play functionality
-        function startAutoPlay() {
-            if (autoPlayInterval) clearInterval(autoPlayInterval);
-            
-            autoPlayInterval = setInterval(() => {
-                goToNext();
-            }, 4000);
-        }
-        
-        function resetAutoPlay() {
-            if (autoPlayInterval) {
-                clearInterval(autoPlayInterval);
-                // Only restart autoplay on tablet/desktop (640px+)
-                if (window.innerWidth >= 640) {
-                    startAutoPlay();
-                }
+                goToSlide(currentIndex); // Snap back with smooth animation
             }
         }
         
@@ -268,14 +239,12 @@ document.addEventListener('DOMContentLoaded', function () {
         if (prevBtn) {
             prevBtn.addEventListener('click', () => {
                 goToPrevious();
-                resetAutoPlay();
             });
         }
         
         if (nextBtn) {
             nextBtn.addEventListener('click', () => {
                 goToNext();
-                resetAutoPlay();
             });
         }
         
@@ -293,30 +262,13 @@ document.addEventListener('DOMContentLoaded', function () {
         carousel.addEventListener('keydown', (e) => {
             if (e.key === 'ArrowLeft') {
                 goToPrevious();
-                resetAutoPlay();
             } else if (e.key === 'ArrowRight') {
                 goToNext();
-                resetAutoPlay();
-            }
-        });
-        
-        // Pause on hover (desktop only)
-        carousel.addEventListener('mouseenter', () => {
-            if (autoPlayInterval) clearInterval(autoPlayInterval);
-        });
-        
-        carousel.addEventListener('mouseleave', () => {
-            if (!isDragging && window.innerWidth >= 640) {
-                startAutoPlay();
             }
         });
         
         // Initialize
         calculateLayout();
-        // Only start autoplay on tablet/desktop
-        if (window.innerWidth >= 640) {
-            startAutoPlay();
-        }
         
         // Handle resize
         let resizeTimeout;
@@ -324,13 +276,6 @@ document.addEventListener('DOMContentLoaded', function () {
             clearTimeout(resizeTimeout);
             resizeTimeout = setTimeout(() => {
                 calculateLayout();
-                // Restart autoplay based on new screen size
-                if (autoPlayInterval) {
-                    clearInterval(autoPlayInterval);
-                    if (window.innerWidth >= 640) {
-                        startAutoPlay();
-                    }
-                }
             }, 100);
         });
     
