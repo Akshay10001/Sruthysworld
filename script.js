@@ -67,88 +67,255 @@ document.addEventListener('DOMContentLoaded', function () {
     // --- PAGE-SPECIFIC INITIALIZERS ---
 
     function initHomepage() {
-        // --- Product Carousel ---
-// --- Professional Product Carousel ---
-const carousel = document.querySelector('.carousel-container');
-if (carousel) {
-    const track = carousel.querySelector('.carousel-track');
-    const slides = Array.from(track.children);
-    const nextButton = carousel.querySelector('.next-btn');
-    const prevButton = carousel.querySelector('.prev-btn');
 
-    if (slides.length === 0) return;
-
-    let currentIndex = 0;
-    let visibleSlides = 1;
-
-    const setupCarousel = () => {
-        const slideWidth = slides[0].getBoundingClientRect().width;
-        visibleSlides = Math.round(track.parentElement.getBoundingClientRect().width / slideWidth);
-        track.style.transition = 'transform 0.6s cubic-bezier(0.25, 0.8, 0.25, 1)';
-        moveToGroup(currentIndex);
-    };
-
-    const moveToGroup = (index) => {
-        const maxIndex = slides.length - visibleSlides;
-        currentIndex = Math.max(0, Math.min(index, maxIndex));
+        const carousel = document.querySelector('.carousel-wrapper');
+        if (!carousel) return;
         
-        const newTransform = -currentIndex * slides[0].getBoundingClientRect().width;
-        track.style.transform = `translateX(${newTransform}px)`;
-    };
-
-    nextButton.addEventListener('click', () => {
-        moveToGroup(currentIndex + visibleSlides);
-    });
-
-    prevButton.addEventListener('click', () => {
-        moveToGroup(currentIndex - visibleSlides);
-    });
-
-    window.addEventListener('resize', setupCarousel);
-    setupCarousel();
-
-    let isDragging = false, startPos = 0, currentTranslate = 0, prevTranslate = 0;
-    const getPositionX = e => e.type.includes('mouse') ? e.pageX : e.touches[0].clientX;
-    
-    const dragStart = (e) => {
-        isDragging = true;
-        startPos = getPositionX(e);
-        track.style.transition = 'none';
-        prevTranslate = -currentIndex * slides[0].getBoundingClientRect().width;
-    };
-
-    const dragMove = (e) => {
-        if (isDragging) {
-            const currentPosition = getPositionX(e);
-            currentTranslate = prevTranslate + currentPosition - startPos;
-            track.style.transform = `translateX(${currentTranslate}px)`;
+        const track = carousel.querySelector('.carousel-track');
+        const slides = Array.from(track.children);
+        const prevBtn = carousel.querySelector('.carousel-prev');
+        const nextBtn = carousel.querySelector('.carousel-next');
+        const dotsContainer = carousel.querySelector('.carousel-dots');
+        const container = carousel.querySelector('.carousel-container');
+        
+        let currentIndex = 0;
+        let slidesPerView = 1;
+        let slideWidth = 0;
+        let maxIndex = 0;
+        let autoPlayInterval = null;
+        let isDragging = false;
+        let startX = 0;
+        let currentTranslate = 0;
+        let prevTranslate = 0;
+        
+        // Calculate responsive values
+        function calculateLayout() {
+            const viewportWidth = window.innerWidth;
+            
+            if (viewportWidth >= 1024) {
+                slidesPerView = 3;
+            } else if (viewportWidth >= 640) {
+                slidesPerView = 2;
+            } else {
+                slidesPerView = 1;
+            }
+            
+            slideWidth = 100 / slidesPerView;
+            maxIndex = Math.max(0, slides.length - slidesPerView);
+            
+            // Update slide widths
+            slides.forEach(slide => {
+                slide.style.minWidth = `${slideWidth}%`;
+            });
+            
+            // Create dots
+            createDots();
+            
+            // Go to current slide
+            goToSlide(Math.min(currentIndex, maxIndex));
         }
-    };
-    
-    const dragEnd = () => {
-        isDragging = false;
-        track.style.transition = 'transform 0.6s cubic-bezier(0.25, 0.8, 0.25, 1)';
-        const movedBy = currentTranslate - prevTranslate;
-
-        if (movedBy < -50) {
-            moveToGroup(currentIndex + visibleSlides);
-        } else if (movedBy > 50) {
-            moveToGroup(currentIndex - visibleSlides);
-        } else {
-            moveToGroup(currentIndex);
+        
+        // Create dot indicators
+        function createDots() {
+            dotsContainer.innerHTML = '';
+            const dotCount = maxIndex + 1;
+            
+            for (let i = 0; i < dotCount; i++) {
+                const dot = document.createElement('button');
+                dot.classList.add('carousel-dot');
+                dot.setAttribute('aria-label', `Go to slide group ${i + 1}`);
+                if (i === currentIndex) {
+                    dot.classList.add('active');
+                }
+                
+                dot.addEventListener('click', () => {
+                    goToSlide(i);
+                    resetAutoPlay();
+                });
+                
+                dotsContainer.appendChild(dot);
+            }
         }
-    };
+        
+        // Update active dot
+        function updateDots() {
+            const dots = dotsContainer.querySelectorAll('.carousel-dot');
+            dots.forEach((dot, index) => {
+                dot.classList.toggle('active', index === currentIndex);
+            });
+        }
+        
+        // Go to specific slide
+        function goToSlide(index) {
+            currentIndex = Math.max(0, Math.min(index, maxIndex));
+            const translateX = -currentIndex * slideWidth;
+            
+            track.classList.add('smooth-transition');
+            track.style.transform = `translateX(${translateX}%)`;
+            
+            updateDots();
+            updateButtonStates();
+            
+            prevTranslate = translateX;
+        }
+        
+        // Update button states
+        function updateButtonStates() {
+            if (prevBtn) {
+                prevBtn.style.opacity = currentIndex === 0 ? '0.5' : '1';
+                prevBtn.style.cursor = currentIndex === 0 ? 'default' : 'pointer';
+            }
+            
+            if (nextBtn) {
+                nextBtn.style.opacity = currentIndex === maxIndex ? '0.5' : '1';
+                nextBtn.style.cursor = currentIndex === maxIndex ? 'default' : 'pointer';
+            }
+        }
+        
+        // Navigation
+        function goToPrevious() {
+            if (currentIndex > 0) {
+                goToSlide(currentIndex - 1);
+            }
+        }
+        
+        function goToNext() {
+            if (currentIndex < maxIndex) {
+                goToSlide(currentIndex + 1);
+            } else {
+                // Loop back to beginning
+                goToSlide(0);
+            }
+        }
+        
+        // Touch/Mouse drag support
+        function handleDragStart(e) {
+            isDragging = true;
+            container.classList.add('dragging');
+            track.classList.remove('smooth-transition');
+            
+            startX = e.type.includes('mouse') ? e.pageX : e.touches[0].clientX;
+            
+            e.preventDefault();
+        }
+        
+        function handleDragMove(e) {
+            if (!isDragging) return;
+            
+            const currentX = e.type.includes('mouse') ? e.pageX : e.touches[0].clientX;
+            const diff = currentX - startX;
+            const translatePercent = (diff / container.offsetWidth) * 100;
+            
+            currentTranslate = prevTranslate + translatePercent;
+            
+            // Add resistance at boundaries
+            if (currentTranslate > 0) {
+                currentTranslate = currentTranslate * 0.3;
+            } else if (currentTranslate < -maxIndex * slideWidth) {
+                const overflow = currentTranslate + maxIndex * slideWidth;
+                currentTranslate = -maxIndex * slideWidth + overflow * 0.3;
+            }
+            
+            track.style.transform = `translateX(${currentTranslate}%)`;
+        }
+        
+        function handleDragEnd(e) {
+            if (!isDragging) return;
+            
+            isDragging = false;
+            container.classList.remove('dragging');
+            
+            const moved = currentTranslate - prevTranslate;
+            const threshold = slideWidth * 0.2;
+            
+            if (moved < -threshold && currentIndex < maxIndex) {
+                goToSlide(currentIndex + 1);
+            } else if (moved > threshold && currentIndex > 0) {
+                goToSlide(currentIndex - 1);
+            } else {
+                goToSlide(currentIndex);
+            }
+            
+            resetAutoPlay();
+        }
+        
+        // Auto-play functionality
+        function startAutoPlay() {
+            if (autoPlayInterval) clearInterval(autoPlayInterval);
+            
+            autoPlayInterval = setInterval(() => {
+                goToNext();
+            }, 4000);
+        }
+        
+        function resetAutoPlay() {
+            if (autoPlayInterval) {
+                clearInterval(autoPlayInterval);
+                startAutoPlay();
+            }
+        }
+        
+        // Event listeners
+        if (prevBtn) {
+            prevBtn.addEventListener('click', () => {
+                goToPrevious();
+                resetAutoPlay();
+            });
+        }
+        
+        if (nextBtn) {
+            nextBtn.addEventListener('click', () => {
+                goToNext();
+                resetAutoPlay();
+            });
+        }
+        
+        // Touch events
+        container.addEventListener('touchstart', handleDragStart, { passive: false });
+        container.addEventListener('touchmove', handleDragMove, { passive: false });
+        container.addEventListener('touchend', handleDragEnd);
+        
+        // Mouse events for desktop
+        container.addEventListener('mousedown', handleDragStart);
+        window.addEventListener('mousemove', handleDragMove);
+        window.addEventListener('mouseup', handleDragEnd);
+        
+        // Keyboard navigation
+        carousel.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft') {
+                goToPrevious();
+                resetAutoPlay();
+            } else if (e.key === 'ArrowRight') {
+                goToNext();
+                resetAutoPlay();
+            }
+        });
+        
+        // Pause on hover
+        carousel.addEventListener('mouseenter', () => {
+            if (autoPlayInterval) clearInterval(autoPlayInterval);
+        });
+        
+        carousel.addEventListener('mouseleave', () => {
+            if (!isDragging) startAutoPlay();
+        });
+        
+        // Initialize
+        calculateLayout();
+        startAutoPlay();
+        
+        // Handle resize
+        let resizeTimeout;
+        window.addEventListener('resize', () => {
+            clearTimeout(resizeTimeout);
+            resizeTimeout = setTimeout(() => {
+                calculateLayout();
+            }, 100);
+        });
+    
+    
+        
 
-    track.addEventListener('mousedown', dragStart);
-    track.addEventListener('touchstart', dragStart, { passive: true });
-    track.addEventListener('mouseup', dragEnd);
-    track.addEventListener('touchend', dragEnd);
-    track.addEventListener('mouseleave', () => { if (isDragging) dragEnd(); });
-    track.addEventListener('mousemove', dragMove);
-    track.addEventListener('touchmove', dragMove, { passive: true });
-}
-
-}
 
         const showAllButton = document.getElementById('show-all-products');
         const collapseButton = document.getElementById('collapse-products');
@@ -171,7 +338,7 @@ if (carousel) {
                 showAllButton.style.display = 'inline-block';
             });
         }
-    
+    }
 
     function initProductPages() {
         const productGrid = document.querySelector('.product-grid');
