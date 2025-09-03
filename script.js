@@ -149,16 +149,14 @@ document.addEventListener('DOMContentLoaded', function () {
         function goToSlide(index) {
             currentIndex = Math.max(0, Math.min(index, maxIndex));
             const translateX = -currentIndex * slideWidth;
+            
             track.classList.add('smooth-transition');
             track.style.transform = `translateX(${translateX}%)`;
+            
             updateDots();
             updateButtonStates();
-            prevTranslate = translateX;
             
-            // Remove transition class after animation completes for better touch responsiveness
-            setTimeout(() => {
-                track.classList.remove('smooth-transition');
-            }, 250);
+            prevTranslate = translateX;
         }
         
         // Update button states
@@ -181,12 +179,18 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         }
         
+        // Smooth loop transition from last to first slide
         function goToNext() {
             if (currentIndex < maxIndex) {
                 goToSlide(currentIndex + 1);
             } else {
-                // Loop back to beginning
-                goToSlide(0);
+                // Smooth transition to first slide
+                currentIndex = 0;
+                track.classList.add('smooth-transition');
+                track.style.transform = `translateX(0%)`;
+                updateDots();
+                updateButtonStates();
+                prevTranslate = 0;
             }
         }
         
@@ -203,9 +207,11 @@ document.addEventListener('DOMContentLoaded', function () {
         
         function handleDragMove(e) {
             if (!isDragging) return;
+            
             const currentX = e.type.includes('mouse') ? e.pageX : e.touches[0].clientX;
             const diff = currentX - startX;
             const translatePercent = (diff / container.offsetWidth) * 100;
+            
             currentTranslate = prevTranslate + translatePercent;
             
             // Add resistance at boundaries
@@ -216,10 +222,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 currentTranslate = -maxIndex * slideWidth + overflow * 0.3;
             }
             
-            // Use requestAnimationFrame for smoother touch interactions
-            requestAnimationFrame(() => {
-                track.style.transform = `translateX(${currentTranslate}%)`;
-            });
+            track.style.transform = `translateX(${currentTranslate}%)`;
         }
         
         function handleDragEnd(e) {
@@ -254,7 +257,10 @@ document.addEventListener('DOMContentLoaded', function () {
         function resetAutoPlay() {
             if (autoPlayInterval) {
                 clearInterval(autoPlayInterval);
-                startAutoPlay();
+                // Only restart autoplay on tablet/desktop (640px+)
+                if (window.innerWidth >= 640) {
+                    startAutoPlay();
+                }
             }
         }
         
@@ -294,18 +300,23 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
         
-        // Pause on hover
+        // Pause on hover (desktop only)
         carousel.addEventListener('mouseenter', () => {
             if (autoPlayInterval) clearInterval(autoPlayInterval);
         });
         
         carousel.addEventListener('mouseleave', () => {
-            if (!isDragging) startAutoPlay();
+            if (!isDragging && window.innerWidth >= 640) {
+                startAutoPlay();
+            }
         });
         
         // Initialize
         calculateLayout();
-        startAutoPlay();
+        // Only start autoplay on tablet/desktop
+        if (window.innerWidth >= 640) {
+            startAutoPlay();
+        }
         
         // Handle resize
         let resizeTimeout;
@@ -313,11 +324,18 @@ document.addEventListener('DOMContentLoaded', function () {
             clearTimeout(resizeTimeout);
             resizeTimeout = setTimeout(() => {
                 calculateLayout();
+                // Restart autoplay based on new screen size
+                if (autoPlayInterval) {
+                    clearInterval(autoPlayInterval);
+                    if (window.innerWidth >= 640) {
+                        startAutoPlay();
+                    }
+                }
             }, 100);
         });
     
     
-        
+        // Show all and collapse button
 
 
         const showAllButton = document.getElementById('show-all-products');
